@@ -1,0 +1,17 @@
+body {
+   main {
+      article {
+         section {
+            .card {
+               width: 300px;
+               height: 400px;
+               .card-img {
+                  width: 150px;
+                  height: 200px;
+                  background-color: #101010;
+               }
+            }
+         }
+      }
+   }
+}
