@@ -1,1 +1,11 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+body main article section .card {
+  width: 300px;
+  height: 400px;
+}
+
+body main article section .card .card-img {
+  width: 150px;
+  height: 200px;
+  background-color: #101010;
+}
+/*# sourceMappingURL=style.css.map */
