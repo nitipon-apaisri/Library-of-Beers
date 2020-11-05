@@ -1,25 +1,16 @@
-async function landingfunction() {
-   const landingresponse = await fetch("https://api.punkapi.com/v2/beers/random");
-   const landinginfo = await landingresponse.json();
-   const landingname = document.querySelector(".card > h3");
-   landingname.innerHTML = landinginfo[0].name;
-}
-landingfunction();
-
-let beers = [];
-
-async function request() {
-   let response = await fetch("https://api.punkapi.com/v2/beers/random");
-   let info = await response.json();
-   beers.push(info[0]);
-}
-request();
+let allBeers = [];
+let fetchingBeers = async () => {
+   await fetch("https://api.punkapi.com/v2/beers/random")
+      .then((res) => res.json())
+      .then((beers) => {
+         allBeers.push(beers[0]);
+      });
+};
 let rand = document.querySelector(".random");
 rand.addEventListener("click", async () => {
-   beers = [];
-   await request();
-   console.log(beers);
-   let name = document.querySelector(".card > h3");
-
-   name.innerHTML = beers[0].name;
+   allBeers = [];
+   await fetchingBeers();
+   let name = document.querySelector(".card > .card-header > .card-title > h3");
+   name.innerHTML = allBeers[0].name;
+   console.log(allBeers[0].name);
 });

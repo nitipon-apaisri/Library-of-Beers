@@ -3,9 +3,8 @@ body main article section .card {
   height: 400px;
 }
 
-body main article section .card .card-img {
+body main article section .card img {
   width: 150px;
   height: 200px;
-  background-color: #101010;
 }
 /*# sourceMappingURL=style.css.map */

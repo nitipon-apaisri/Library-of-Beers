@@ -3,34 +3,34 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css" />
+      <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" />
+      <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css" />
       <link rel="stylesheet" href="css/style.css" />
       <title>Beer</title>
    </head>
    <body>
       <main>
-         <article>
-            <section>
-               <div class="card">
-                  <div class="card-img"></div>
-                  <h3></h3>
-                  <a href="">See more </a>
-               </div>
-               <button class="random">random</button>
-            </section>
-         </article>
-
-         <artictle>
-            <section>
-               <div class="search"></div>
-            </section>
-         </article>
-
-         <artictle>
-            <section>
-               <div class="info"></div>
-            </section>
-         </article>
-
+         <div class="container">
+            <article class="col-4 col-mx-auto">
+               <section>
+                  <div class="card">
+                     <div class="card-img">
+                        <img alt="beer" class="img-responsive" />
+                     </div>
+                     <div class="card-header">
+                        <div class="card-title">
+                           <h3>Title</h3>
+                        </div>
+                     </div>
+                     <div class="card-footer">
+                        <button class="btn btn-primary">See more</button>
+                     </div>
+                  </div>
+                  <button class="random">random</button>
+               </section>
+            </article>
+         </div>
       </main>
       <script src="js/main.js"></script>
    </body>
