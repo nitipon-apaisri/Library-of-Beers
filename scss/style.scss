@@ -1,14 +1,22 @@
 body {
+   width: 1366px;
+   margin: auto;
    main {
-      article {
+      article.landing {
          section {
             .card {
                width: 300px;
+               margin: 0 auto;
                height: 400px;
                img {
                   width: 150px;
                   height: 200px;
                }
+            }
+            .random-butt {
+               margin-top: 20px;
+               display: flex;
+               justify-content: center;
             }
          }
       }

@@ -1,10 +1,26 @@
-body main article section .card {
+body {
+  width: 1366px;
+  margin: auto;
+}
+
+body main article.landing section .card {
   width: 300px;
+  margin: 0 auto;
   height: 400px;
 }
 
-body main article section .card img {
+body main article.landing section .card img {
   width: 150px;
   height: 200px;
+}
+
+body main article.landing section .random-butt {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 /*# sourceMappingURL=style.css.map */
