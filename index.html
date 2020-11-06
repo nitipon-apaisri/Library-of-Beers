@@ -10,6 +10,14 @@
       <title>Beer</title>
    </head>
    <body>
+      <header class="navbar">
+         <nav class="navbar-section">
+            <ul class="nav columns">
+               <li class="nav-item"><a href="">Home</a></li>
+               <li class="nav-item"><a href="">Search</a></li>
+            </ul>
+         </nav>
+      </header>
       <main>
          <div class="container">
             <article class="col-4 col-mx-auto landing">
@@ -29,6 +37,21 @@
                   </div>
                   <div class="random-butt">
                      <button class="random">random</button>
+                  </div>
+               </section>
+            </article>
+            <article class="columns searching-page">
+               <section class="column col-12">
+                  <div class="empty">
+                     <div class="empty-icon">
+                        <i class="icon icon-people"></i>
+                     </div>
+                     <p class="empty-title h5">You have no new messages</p>
+                     <p class="empty-subtitle">Click the button to start a conversation.</p>
+                     <div class="empty-action">
+                        <input type="text" class="input-beer-name form-input" placeholder="Searching by name" />
+                        <button class="btn btn-primary name-submit">Send a message</button>
+                     </div>
                   </div>
                </section>
             </article>
