@@ -1,6 +1,6 @@
 @mixin img {
-   width: 150px;
-   height: 200px;
+   width: 260px;
+   height: 150px;
 }
 .hide {
    display: none;
@@ -8,6 +8,19 @@
 body {
    width: 1366px;
    margin: auto;
+   header {
+      nav {
+         ul {
+            display: flex;
+            li {
+               list-style: none;
+               a {
+                  padding: 20px;
+               }
+            }
+         }
+      }
+   }
    main {
       article.landing {
          section {
@@ -16,10 +29,16 @@ body {
                margin: 0 auto;
                height: 400px;
                .card-img {
+                  padding-top: 20px;
+                  .placeholde-img {
+                     background-color: #101010;
+                     @include img;
+                  }
                   display: flex;
                   justify-content: center;
                   img {
-                     @include img;
+                     width: 180px;
+                     height: 150px;
                   }
                }
             }
@@ -29,6 +48,25 @@ body {
                justify-content: center;
             }
          }
+      }
+      .searching-page {
+         section.search-input {
+            .empty {
+               .empty-icon {
+                  i {
+                     font-size: 2rem;
+                  }
+               }
+               .empty-action {
+                  button {
+                     margin-top: 20px;
+                  }
+               }
+            }
+         }
+      }
+      section.list {
+         margin-top: 20px;
       }
       .modal {
          .modal-container {
@@ -40,7 +78,8 @@ body {
                   .card-img {
                      margin: auto;
                      img {
-                        @include img;
+                        width: 260px;
+                        height: 320px;
                      }
                   }
                }

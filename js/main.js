@@ -19,6 +19,10 @@ let rand = document.querySelector(".random");
 rand.addEventListener("click", async () => {
    randBeer = [];
    await fetchingBeers();
+   let hidePlaceHolderImg = document.querySelector("article.landing > section > .card > .card-img > .placeholde-img ");
+   hidePlaceHolderImg.classList.add("hide");
+   let showImg = document.querySelector("article.landing > section > .card > .card-img > img");
+   showImg.classList.remove("hide");
    randomBeerInfo(0);
    console.log(randBeer[0].ingredients.malt);
    console.log(randBeer[0].ingredients.hops);
@@ -87,6 +91,8 @@ submit.addEventListener("click", () => {
    for (let i of allBeers) {
       let v = i.name.includes(inputBeerName.value);
       if (v == true) {
+         let resultList = document.querySelector(".list");
+         resultList.classList.remove("hide");
          let name = document.querySelector(".searching-page > section.list >  .card > .card-header > .card-title > .name");
          let img = document.querySelector(".searching-page > section.list >.card > .card-img > img ");
          img.src = i.image_url;
@@ -131,4 +137,20 @@ submit.addEventListener("click", () => {
       }
    }
    inputBeerName.value = "";
+});
+
+let searchButt = document.querySelector(".search");
+searchButt.addEventListener("click", () => {
+   let hideLandimg = document.querySelector(".landing");
+   hideLandimg.classList.add("hide");
+   let showSearch = document.querySelector(".searching-page");
+   showSearch.classList.remove("hide");
+});
+
+let homeButt = document.querySelector(".home");
+homeButt.addEventListener("click", () => {
+   let hideLandimg = document.querySelector(".landing");
+   hideLandimg.classList.remove("hide");
+   let showSearch = document.querySelector(".searching-page");
+   showSearch.classList.add("hide");
 });
