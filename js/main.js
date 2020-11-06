@@ -70,6 +70,3 @@ const randomBeerInfo = () => {
       foodUserList.appendChild(foodList);
    }
 };
-
-   name.innerHTML = beers[0].name;
-});
