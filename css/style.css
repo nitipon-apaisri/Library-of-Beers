@@ -70,6 +70,10 @@ body main section.list {
   margin-top: 20px;
 }
 
+body main section.list .row {
+  margin: 20px 0;
+}
+
 body main .modal .modal-container {
   width: 450px;
 }
