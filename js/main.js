@@ -83,6 +83,26 @@ fetch("https://api.punkapi.com/v2/beers")
 let inputBeerName = document.querySelector(".searching-page > section > .empty > .empty-action > .input-beer-name");
 let submit = document.querySelector(".name-submit");
 submit.addEventListener("click", () => {
-   console.log(inputBeerName.value);
+   // const options = {
+   //    isCaseSensitive: false,
+   //    includeScore: false,
+   //    shouldSort: true,
+   //    includeMatches: false,
+   //    findAllMatches: false,
+   //    minMatchCharLength: 1,
+   //    location: 0,
+   //    threshold: 0.6,
+   //    distance: 100,
+   //    useExtendedSearch: false,
+   //    ignoreLocation: false,
+   //    ignoreFieldNorm: false,
+   //    keys: ["name"],
+   // };
+
+   // const fuse = new Fuse(allBeers, options);
+   // const re = fuse.search(inputBeerName.value);
+   // console.log(re);
+   let v = allBeers.includes(inputBeerName.value);
+   console.log(v);
    inputBeerName.value = "";
 });
