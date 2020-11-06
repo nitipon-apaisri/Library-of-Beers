@@ -1,45 +1,14 @@
-@mixin img {
-   width: 150px;
-   height: 200px;
-}
 body {
-   width: 1366px;
-   margin: auto;
    main {
-      article.landing {
+      article {
          section {
             .card {
                width: 300px;
-               margin: 0 auto;
                height: 400px;
                .card-img {
-                  display: flex;
-                  justify-content: center;
-                  img {
-                     @include img;
-                  }
-               }
-            }
-            .random-butt {
-               margin-top: 20px;
-               display: flex;
-               justify-content: center;
-            }
-         }
-      }
-      .modal {
-         .modal-container {
-            width: 450px;
-            .modal-body {
-               .modal-content {
-                  display: flex;
-                  flex-direction: column;
-                  .card-img {
-                     margin: auto;
-                     img {
-                        @include img;
-                     }
-                  }
+                  width: 150px;
+                  height: 200px;
+                  background-color: #101010;
                }
             }
          }
