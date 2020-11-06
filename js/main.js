@@ -71,18 +71,5 @@ const randomBeerInfo = () => {
    }
 };
 
-let allBeers = [];
-fetch("https://api.punkapi.com/v2/beers")
-   .then((res) => res.json())
-   .then((beers) => {
-      for (let i of beers) {
-         allBeers.push(i.name);
-      }
-      console.log(allBeers);
-   });
-let inputBeerName = document.querySelector(".searching-page > section > .empty > .empty-action > .input-beer-name");
-let submit = document.querySelector(".name-submit");
-submit.addEventListener("click", () => {
-   console.log(inputBeerName.value);
-   inputBeerName.value = "";
+   name.innerHTML = beers[0].name;
 });
