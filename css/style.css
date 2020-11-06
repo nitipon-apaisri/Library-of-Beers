@@ -1,11 +1,58 @@
-body main article section .card {
+body {
+  width: 1366px;
+  margin: auto;
+}
+
+body main article.landing section .card {
   width: 300px;
+  margin: 0 auto;
   height: 400px;
 }
 
-body main article section .card .card-img {
+body main article.landing section .card .card-img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body main article.landing section .card .card-img img {
   width: 150px;
   height: 200px;
-  background-color: #101010;
+}
+
+body main article.landing section .random-butt {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body main .modal .modal-container {
+  width: 450px;
+}
+
+body main .modal .modal-container .modal-body .modal-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body main .modal .modal-container .modal-body .modal-content .card-img {
+  margin: auto;
+}
+
+body main .modal .modal-container .modal-body .modal-content .card-img img {
+  width: 150px;
+  height: 200px;
 }
 /*# sourceMappingURL=style.css.map */
