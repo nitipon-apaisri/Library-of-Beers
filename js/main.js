@@ -1,6 +1,6 @@
 let randBeer = [];
 
-let fetchingBeers = async () => {
+const fetchingBeers = async () => {
    await fetch("https://api.punkapi.com/v2/beers/random")
       .then((res) => res.json())
       .then((beers) => {
@@ -8,72 +8,73 @@ let fetchingBeers = async () => {
       });
 };
 
-let modal = document.querySelector(".modal");
+const modal = document.querySelector(".modal");
 
-let rand = document.querySelector(".random");
+const rand = document.querySelector(".random");
 rand.addEventListener("click", async () => {
    randBeer = [];
    await fetchingBeers();
-   let hidePlaceHolderImg = document.querySelector("article.landing > section > .card > .card-img > .placeholde-img ");
+   const hidePlaceHolderImg = document.querySelector("article.landing > section > .card > .card-img > .placeholde-img ");
    hidePlaceHolderImg.classList.add("hide");
-   let showImg = document.querySelector("article.landing > section > .card > .card-img > img");
+   const showImg = document.querySelector("article.landing > section > .card > .card-img > img");
    showImg.classList.remove("hide");
    randomBeerInfo(0);
 });
 
-let more = document.querySelector(".card > .card-footer > button");
+const more = document.querySelector(".card > .card-footer > button");
 more.addEventListener("click", () => {
    modal.classList.add("active");
-   let nameInModal = document.querySelector(".modal-title");
+   const nameInModal = document.querySelector(".modal-title");
    nameInModal.innerHTML = randBeer[0].name;
-   let modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
+   const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
    modalImg.src = randBeer[0].image_url;
-   let modaldescription = document.querySelector(".description");
+   const modaldescription = document.querySelector(".description");
    modaldescription.innerHTML = `<b>Description:</b> ${randBeer[0].description}`;
-   let modalAlco = document.querySelector(".alco-volume");
+   const modalAlco = document.querySelector(".alco-volume");
    modalAlco.innerHTML = `<b>Volume:</b> ${randBeer[0].volume.value} ${randBeer[0].volume.unit}`;
-   let tips = document.querySelector(".tips");
+   const tips = document.querySelector(".tips");
    tips.innerHTML = `<b>Tips:</b> ${randBeer[0].brewers_tips}`;
 });
 
-let closeButt = document.querySelector(".modal > .modal-container > .modal-header > .close");
+const closeButt = document.querySelector(".modal > .modal-container > .modal-header > .close");
 closeButt.addEventListener("click", () => {
    modal.classList.remove("active");
 });
 
 const randomBeerInfo = (value) => {
-   let name = document.querySelector(".card > .card-header > .card-title > .name");
-   let img = document.querySelector(".card > .card-img > img ");
+   const name = document.querySelector(".card > .card-header > .card-title > .name");
+   const img = document.querySelector(".card > .card-img > img ");
    img.src = randBeer[value].image_url;
    name.innerHTML = randBeer[value].name;
-   for (let beerIngredients of randBeer[value].ingredients.malt) {
-      let ingredientsList = document.createElement("li");
-      let ingredientsUserList = document.querySelector(".modal-content > ul");
-      let ingredients = beerIngredients.name;
+   for (const beerIngredients of randBeer[value].ingredients.malt) {
+      const ingredientsList = document.createElement("li");
+      const ingredientsUserList = document.querySelector(".modal-content > ul");
+      const ingredients = beerIngredients.name;
       ingredientsList.textContent = ingredients;
       ingredientsUserList.appendChild(ingredientsList);
    }
-   for (let beerHops of randBeer[value].ingredients.hops) {
-      let hopsList = document.createElement("li");
-      let hopsUserList = document.querySelector(".modal-content > .hops");
-      let hops = beerHops.name;
+   for (const beerHops of randBeer[value].ingredients.hops) {
+      const hopsList = document.createElement("li");
+      const hopsUserList = document.querySelector(".modal-content > .hops");
+      const hops = beerHops.name;
       hopsList.textContent = hops;
       hopsUserList.appendChild(hopsList);
    }
 
-   for (let beerPairing of randBeer[value].food_pairing) {
-      let foodList = document.createElement("li");
-      let foodUserList = document.querySelector(".modal-content > .food-pairing");
-      let food = beerPairing;
+   for (const beerPairing of randBeer[value].food_pairing) {
+      const foodList = document.createElement("li");
+      const foodUserList = document.querySelector(".modal-content > .food-pairing");
+      const food = beerPairing;
       foodList.textContent = food;
       foodUserList.appendChild(foodList);
    }
 };
-let searchButt = document.querySelector(".search");
+
+const searchButt = document.querySelector(".search");
 searchButt.addEventListener("click", () => {
    hideLanding();
 });
-let homeButt = document.querySelector(".home");
+const homeButt = document.querySelector(".home");
 homeButt.addEventListener("click", () => {
    showLanding();
 });
