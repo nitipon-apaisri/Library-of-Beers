@@ -1,18 +1,34 @@
+let count = 0;
+let currentPageNr = 1;
+let perPage = 8;
 const input = document.querySelector(".input-beer-name");
 const submit = document.querySelector(".name-submit");
+const subList = document.querySelector(".sub-list");
+const previousBtn = document.querySelector(".previous");
+const nexBtn = document.querySelector(".next");
+const currentPage = document.querySelector(".current-page");
 let beersArr = [];
 submit.addEventListener("click", async () => {
    refreshContent();
    beersArr = [];
-   const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=50";
+   const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=40";
    await fetch(results)
       .then((res) => res.json())
-      .then((beer) => {
-         beer.forEach((beers) => {
-            beersArr.push(beers);
+      .then((beers) => {
+         beers.forEach((beer) => {
+            beersArr.push(beer);
          });
       });
-   renderList();
+   if (beersArr.length > 8) {
+      subList.classList.remove("hide");
+      nexBtn.classList.remove("hide");
+      currentPage.classList.remove("hide");
+      currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
+      defaultData();
+   } else {
+      subList.classList.add("hide");
+      renderList();
+   }
    seeMore();
    input.value = "";
    console.log(beersArr.length);
@@ -65,7 +81,6 @@ const seeMore = () => {
    seeMoreButt.forEach((butt) => {
       butt.addEventListener("click", async () => {
          renderInfo();
-         console.log("hi");
       });
    });
 };
@@ -79,9 +94,6 @@ const renderList = () => {
       const card = document.createElement("div");
       card.setAttribute("class", "card");
       coverCard.append(card);
-      const cardImg = document.createElement("div");
-      cardImg.setAttribute("class", "card-img");
-      card.append(cardImg);
       const cardHeader = document.createElement("div");
       cardHeader.setAttribute("class", "card-header");
       card.append(cardHeader);
@@ -104,3 +116,73 @@ const renderList = () => {
    const append = document.querySelector(".list");
    append.append(row);
 };
+let current0 = 0;
+let current1 = 1;
+let current2 = 2;
+let current3 = 3;
+let current4 = 4;
+let current5 = 5;
+let current6 = 6;
+let current7 = 7;
+nexBtn.addEventListener("click", () => {
+   previousBtn.classList.remove("hide");
+   count += 8;
+   currentPageNr += 1;
+   currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
+   current0 = 0 + count;
+   current1 = 1 + count;
+   current2 = 2 + count;
+   current3 = 3 + count;
+   current4 = 4 + count;
+   current5 = 5 + count;
+   current6 = 6 + count;
+   current7 = 7 + count;
+   const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
+   cardName0.textContent = beersArr[current0].name;
+   const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
+   cardName1.textContent = beersArr[current1].name;
+   const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
+   cardName2.textContent = beersArr[current2].name;
+   const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
+   cardName3.textContent = beersArr[current3].name;
+   const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
+   cardName4.textContent = beersArr[current4].name;
+   const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
+   cardName5.textContent = beersArr[current5].name;
+   const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
+   cardName6.textContent = beersArr[current6].name;
+   const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
+   cardName7.textContent = beersArr[current7].name;
+   console.log(count);
+});
+previousBtn.addEventListener("click", () => {
+   count -= 8;
+   currentPageNr -= 1;
+   currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
+   current0 -= 8;
+   current1 -= 8;
+   current2 -= 8;
+   current3 -= 8;
+   current4 -= 8;
+   current5 -= 8;
+   current6 -= 8;
+   current7 -= 8;
+   previousBtn.classList.remove("hide");
+   const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
+   cardName0.textContent = beersArr[current0].name;
+   const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
+   cardName1.textContent = beersArr[current1].name;
+   const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
+   cardName2.textContent = beersArr[current2].name;
+   const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
+   cardName3.textContent = beersArr[current3].name;
+   const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
+   cardName4.textContent = beersArr[current4].name;
+   const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
+   cardName5.textContent = beersArr[current5].name;
+   const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
+   cardName6.textContent = beersArr[current6].name;
+   const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
+   cardName7.textContent = beersArr[current7].name;
+   console.log(count);
+});
