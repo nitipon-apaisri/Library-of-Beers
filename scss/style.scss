@@ -66,9 +66,23 @@ body {
          }
       }
       section.list {
-         margin-top: 20px;
-         .row {
-            margin: 20px 0;
+         margin: 20px 0;
+         .columns {
+            .cover-card {
+               margin-bottom: 20px;
+               .card {
+                  .card-header {
+                     .card-title {
+                        h5 {
+                           white-space: nowrap;
+                           overflow: hidden;
+                           text-overflow: ellipsis;
+                           max-width: 220px;
+                        }
+                     }
+                  }
+               }
+            }
          }
       }
       .modal {

@@ -67,11 +67,18 @@ body main .searching-page section.search-input .empty .empty-action button {
 }
 
 body main section.list {
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
-body main section.list .row {
-  margin: 20px 0;
+body main section.list .columns .cover-card {
+  margin-bottom: 20px;
+}
+
+body main section.list .columns .cover-card .card .card-header .card-title h5 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
 }
 
 body main .modal .modal-container {

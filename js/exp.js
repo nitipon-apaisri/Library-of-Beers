@@ -28,6 +28,8 @@ const renderInfo = () => {
       modal.classList.add("active");
       let nameInModal = document.querySelector(".modal-title");
       nameInModal.innerHTML = i.name;
+      let modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
+      modalImg.src = i.image_url;
       let modaldescription = document.querySelector(".description");
       modaldescription.innerHTML = `<b>Description:</b> ${i.description}`;
       let modalAlco = document.querySelector(".alco-volume");
@@ -83,10 +85,6 @@ const renderList = () => {
       let cardImg = document.createElement("div");
       cardImg.setAttribute("class", "card-img");
       card.append(cardImg);
-      // let img = document.createElement("img");
-      // img.src = i.image_url;
-      // img.setAttribute("class", "img-responsive img");
-      // cardImg.append(img);
       let cardHeader = document.createElement("div");
       cardHeader.setAttribute("class", "card-header");
       card.append(cardHeader);
