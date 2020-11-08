@@ -12,7 +12,7 @@ const showLanding = () => {
    showSearch.classList.add("hide");
 };
 
-const defaultData = () => {
+const beersData = () => {
    const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
    cardName0.textContent = beersArr[0].name;
    const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
@@ -29,4 +29,11 @@ const defaultData = () => {
    cardName6.textContent = beersArr[6].name;
    const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
    cardName7.textContent = beersArr[7].name;
+};
+
+const refreshContent = () => {
+   const append = document.querySelector(".list");
+   append.innerHTML = "";
+   currentPageNr = 1;
+   count = 0;
 };
