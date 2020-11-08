@@ -126,6 +126,7 @@ let current7 = 7;
 nexBtn.addEventListener("click", () => {
    previousBtn.classList.remove("hide");
    count += 8;
+   newValue += 8;
    currentPageNr += 1;
    currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
    current0 = 0 + count;
