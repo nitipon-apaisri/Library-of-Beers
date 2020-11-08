@@ -1,3 +1,4 @@
+//---------- Global varaialbes ----------
 let count = 0;
 let currentPageNr = 1;
 let perPage = 8;
@@ -9,6 +10,7 @@ const nexBtn = document.querySelector(".next");
 const currentPage = document.querySelector(".current-page");
 let newValue = 0;
 let beersArr = [];
+//---------- Searching feature ----------
 submit.addEventListener("click", async () => {
    refreshContent();
    beersArr = [];
@@ -25,22 +27,28 @@ submit.addEventListener("click", async () => {
       nexBtn.classList.remove("hide");
       currentPage.classList.remove("hide");
       currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
-      defaultData();
+      beersData();
    } else {
       subList.classList.add("hide");
-      renderList();
+      renderCard();
       setValue();
    }
    seeMore();
    input.value = "";
    console.log(beersArr.length);
 });
-
-const refreshContent = () => {
-   const append = document.querySelector(".list");
-   append.innerHTML = "";
+//---------- See more butt function ----------
+const seeMore = () => {
+   const seeMoreButt = document.querySelectorAll(".see-more");
+   seeMoreButt.forEach((butt) => {
+      butt.addEventListener("click", () => {
+         let buttValue = Number(butt.value);
+         buttValue += count;
+         renderInfo(buttValue);
+      });
+   });
 };
-
+//---------- Renders info when clicked more butt ----------
 const renderInfo = (buttValue) => {
    modal.classList.add("active");
    const nameInModal = document.querySelector(".modal-title");
@@ -75,17 +83,8 @@ const renderInfo = (buttValue) => {
       foodUserList.appendChild(foodList);
    });
 };
-const seeMore = () => {
-   const seeMoreButt = document.querySelectorAll(".see-more");
-   seeMoreButt.forEach((butt) => {
-      butt.addEventListener("click", () => {
-         let buttValue = Number(butt.value);
-         buttValue += newValue;
-         renderInfo(buttValue);
-      });
-   });
-};
-const renderList = () => {
+//---------- Renders card's element when result is less than 8 ----------
+const renderCard = () => {
    const row = document.createElement("div");
    beersArr.forEach((elements) => {
       row.setAttribute("class", "columns");
@@ -116,12 +115,14 @@ const renderList = () => {
    const append = document.querySelector(".list");
    append.append(row);
 };
+//---------- Setting value for see more butt ----------
 let setValue = () => {
    let allButt = document.querySelectorAll(".see-more");
    allButt.forEach((item, i) => {
       item.setAttribute("value", i);
    });
 };
+//---------- Next fucntion ----------
 let current0 = 0;
 let current1 = 1;
 let current2 = 2;
@@ -133,7 +134,6 @@ let current7 = 7;
 nexBtn.addEventListener("click", () => {
    previousBtn.classList.remove("hide");
    count += 8;
-   newValue += 8;
    currentPageNr += 1;
    currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
    current0 = 0 + count;
@@ -161,13 +161,12 @@ nexBtn.addEventListener("click", () => {
    const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
    cardName7.textContent = beersArr[current7].name;
    console.log(count);
-   console.log(`"newValue:" ${newValue}`);
+   console.log(`"newValue:" ${count}`);
 });
-
+//---------- Prevoius funciton ----------
 previousBtn.addEventListener("click", () => {
    count -= 8;
    currentPageNr -= 1;
-   newValue -= 8;
    currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
    current0 -= 8;
    current1 -= 8;
@@ -195,5 +194,5 @@ previousBtn.addEventListener("click", () => {
    const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
    cardName7.textContent = beersArr[current7].name;
    console.log(count);
-   console.log(`"newValue:" ${newValue}`);
+   console.log(`"newValue:" ${count}`);
 });
