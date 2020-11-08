@@ -29,6 +29,7 @@ submit.addEventListener("click", async () => {
    } else {
       subList.classList.add("hide");
       renderList();
+      setValue();
    }
    seeMore();
    input.value = "";
@@ -115,6 +116,12 @@ const renderList = () => {
    const append = document.querySelector(".list");
    append.append(row);
 };
+let setValue = () => {
+   let allButt = document.querySelectorAll(".see-more");
+   allButt.forEach((item, i) => {
+      item.setAttribute("value", i);
+   });
+};
 let current0 = 0;
 let current1 = 1;
 let current2 = 2;
@@ -160,6 +167,7 @@ nexBtn.addEventListener("click", () => {
 previousBtn.addEventListener("click", () => {
    count -= 8;
    currentPageNr -= 1;
+   newValue -= 8;
    currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
    current0 -= 8;
    current1 -= 8;
@@ -187,4 +195,5 @@ previousBtn.addEventListener("click", () => {
    const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
    cardName7.textContent = beersArr[current7].name;
    console.log(count);
+   console.log(`"newValue:" ${newValue}`);
 });
