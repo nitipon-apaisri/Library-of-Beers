@@ -7,6 +7,7 @@ const subList = document.querySelector(".sub-list");
 const previousBtn = document.querySelector(".previous");
 const nexBtn = document.querySelector(".next");
 const currentPage = document.querySelector(".current-page");
+let newValue = 0;
 let beersArr = [];
 submit.addEventListener("click", async () => {
    refreshContent();
@@ -39,52 +40,50 @@ const refreshContent = () => {
    append.innerHTML = "";
 };
 
-const renderInfo = () => {
-   beersArr.forEach((info) => {
-      modal.classList.add("active");
-      const nameInModal = document.querySelector(".modal-title");
-      nameInModal.innerHTML = info.name;
-      const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
-      modalImg.src = info.image_url;
-      const modaldescription = document.querySelector(".description");
-      modaldescription.innerHTML = `<b>Description:</b> ${info.description}`;
-      const modalAlco = document.querySelector(".alco-volume");
-      modalAlco.innerHTML = `<b>Volume:</b> ${info.volume.value} ${info.volume.unit}`;
-      const tips = document.querySelector(".tips");
-      tips.innerHTML = `<b>Tips:</b> ${info.brewers_tips}`;
-      info.ingredients.malt.forEach((beerIngredients) => {
-         const ingredientsList = document.createElement("li");
-         const ingredientsUserList = document.querySelector(".modal-content > ul");
-         const ingredients = beerIngredients.name;
-         ingredientsList.textContent = ingredients;
-         ingredientsUserList.appendChild(ingredientsList);
-      });
-      info.ingredients.hops.forEach((beerHops) => {
-         const hopsList = document.createElement("li");
-         const hopsUserList = document.querySelector(".modal-content > .hops");
-         const hops = beerHops.name;
-         hopsList.textContent = hops;
-         hopsUserList.appendChild(hopsList);
-      });
-      info.food_pairing.forEach((beerPairing) => {
-         const foodList = document.createElement("li");
-         const foodUserList = document.querySelector(".modal-content > .food-pairing");
-         const food = beerPairing;
-         foodList.textContent = food;
-         foodUserList.appendChild(foodList);
-      });
+const renderInfo = (buttValue) => {
+   modal.classList.add("active");
+   const nameInModal = document.querySelector(".modal-title");
+   nameInModal.innerHTML = beersArr[buttValue].name;
+   const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
+   modalImg.src = beersArr[buttValue].image_url;
+   const modaldescription = document.querySelector(".description");
+   modaldescription.innerHTML = `<b>Description:</b> ${beersArr[buttValue].description}`;
+   const modalAlco = document.querySelector(".alco-volume");
+   modalAlco.innerHTML = `<b>Volume:</b> ${beersArr[buttValue].volume.value} ${beersArr[buttValue].volume.unit}`;
+   const tips = document.querySelector(".tips");
+   tips.innerHTML = `<b>Tips:</b> ${beersArr[buttValue].brewers_tips}`;
+   beersArr[buttValue].ingredients.malt.forEach((beerIngredients) => {
+      const ingredientsList = document.createElement("li");
+      const ingredientsUserList = document.querySelector(".modal-content > ul");
+      const ingredients = beerIngredients.name;
+      ingredientsList.textContent = ingredients;
+      ingredientsUserList.appendChild(ingredientsList);
+   });
+   beersArr[buttValue].ingredients.hops.forEach((beerHops) => {
+      const hopsList = document.createElement("li");
+      const hopsUserList = document.querySelector(".modal-content > .hops");
+      const hops = beerHops.name;
+      hopsList.textContent = hops;
+      hopsUserList.appendChild(hopsList);
+   });
+   beersArr[buttValue].food_pairing.forEach((beerPairing) => {
+      const foodList = document.createElement("li");
+      const foodUserList = document.querySelector(".modal-content > .food-pairing");
+      const food = beerPairing;
+      foodList.textContent = food;
+      foodUserList.appendChild(foodList);
    });
 };
-
 const seeMore = () => {
    const seeMoreButt = document.querySelectorAll(".see-more");
    seeMoreButt.forEach((butt) => {
-      butt.addEventListener("click", async () => {
-         renderInfo();
+      butt.addEventListener("click", () => {
+         let buttValue = Number(butt.value);
+         buttValue += newValue;
+         renderInfo(buttValue);
       });
    });
 };
-
 const renderList = () => {
    const row = document.createElement("div");
    beersArr.forEach((elements) => {
@@ -154,7 +153,9 @@ nexBtn.addEventListener("click", () => {
    const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
    cardName7.textContent = beersArr[current7].name;
    console.log(count);
+   console.log(`"newValue:" ${newValue}`);
 });
+
 previousBtn.addEventListener("click", () => {
    count -= 8;
    currentPageNr -= 1;
