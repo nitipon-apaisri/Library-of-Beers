@@ -29,6 +29,7 @@ submit.addEventListener("click", async () => {
    } else {
       subList.classList.add("hide");
       renderList();
+      setValue();
    }
    seeMore();
    input.value = "";
@@ -114,6 +115,12 @@ const renderList = () => {
    });
    const append = document.querySelector(".list");
    append.append(row);
+};
+let setValue = () => {
+   let allButt = document.querySelectorAll(".see-more");
+   allButt.forEach((item, i) => {
+      item.setAttribute("value", i);
+   });
 };
 let current0 = 0;
 let current1 = 1;
