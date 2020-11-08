@@ -66,19 +66,47 @@ body main .searching-page section.search-input .empty .empty-action button {
   margin-top: 20px;
 }
 
-body main section.list {
+body main .searching-page section.list {
   margin: 20px 0;
 }
 
-body main section.list .columns .cover-card {
+body main .searching-page section.list .columns .cover-card {
   margin-bottom: 20px;
 }
 
-body main section.list .columns .cover-card .card .card-header .card-title h5 {
+body main .searching-page section.list .columns .cover-card .card .card-header .card-title h5 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 220px;
+}
+
+body main .searching-page .pagine-chan {
+  width: 100%;
+  margin: auto;
+}
+
+body main .searching-page .pagine-chan ul.pagi {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0;
+}
+
+body main .searching-page .pagine-chan ul.pagi li {
+  list-style: none;
+}
+
+body main .searching-page .pagine-chan ul.pagi li a {
+  text-decoration: none;
+}
+
+body main .searching-page .pagine-chan ul.pagi p {
+  margin: 0;
+  padding: 8px;
 }
 
 body main .modal .modal-container {

@@ -20,7 +20,7 @@
       </header>
       <main>
          <div class="container">
-            <article class="col-4 col-mx-auto landing hide">
+            <article class="col-4 col-mx-auto landing">
                <section>
                   <div class="card">
                      <div class="card-img">
@@ -41,7 +41,7 @@
                   </div>
                </section>
             </article>
-            <article class="columns searching-page">
+            <article class="columns searching-page hide">
                <section class="column col-12 search-input">
                   <div class="empty">
                      <div class="empty-icon">
@@ -154,9 +154,13 @@
                      </div>
                   </div>
                </section>
-               <button class="previous hide">Previous</button>
-               <p class="current-page hide"></p>
-               <button class="next hide">Next</button>
+               <div class="pagine-chan">
+                  <ul class="pagi">
+                     <li class="previous page-item page-prev hide"><a>Previous</a></li>
+                     <p class="current-page hide"></p>
+                     <li class="next page-item page-next hide"><a>Next</a></li>
+                  </ul>
+               </div>
             </article>
             <div class="modal">
                <a href="#close" class="modal-overlay" aria-label="Close"></a>
