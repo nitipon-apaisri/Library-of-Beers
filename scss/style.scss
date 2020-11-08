@@ -64,23 +64,42 @@ body {
                }
             }
          }
-      }
-      section.list {
-         margin: 20px 0;
-         .columns {
-            .cover-card {
-               margin-bottom: 20px;
-               .card {
-                  .card-header {
-                     .card-title {
-                        h5 {
-                           white-space: nowrap;
-                           overflow: hidden;
-                           text-overflow: ellipsis;
-                           max-width: 220px;
+         section.list {
+            margin: 20px 0;
+            .columns {
+               .cover-card {
+                  margin-bottom: 20px;
+                  .card {
+                     .card-header {
+                        .card-title {
+                           h5 {
+                              white-space: nowrap;
+                              overflow: hidden;
+                              text-overflow: ellipsis;
+                              max-width: 220px;
+                           }
                         }
                      }
                   }
+               }
+            }
+         }
+         .pagine-chan {
+            width: 100%;
+            margin: auto;
+            ul.pagi {
+               display: flex;
+               justify-content: center;
+               margin: 0;
+               li {
+                  list-style: none;
+                  a {
+                     text-decoration: none;
+                  }
+               }
+               p {
+                  margin: 0;
+                  padding: 8px;
                }
             }
          }
