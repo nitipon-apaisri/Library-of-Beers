@@ -160,6 +160,7 @@ nexBtn.addEventListener("click", () => {
 previousBtn.addEventListener("click", () => {
    count -= 8;
    currentPageNr -= 1;
+   newValue -= 8;
    currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
    current0 -= 8;
    current1 -= 8;
@@ -187,4 +188,5 @@ previousBtn.addEventListener("click", () => {
    const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
    cardName7.textContent = beersArr[current7].name;
    console.log(count);
+   console.log(`"newValue:" ${newValue}`);
 });
