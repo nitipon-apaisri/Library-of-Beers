@@ -203,7 +203,6 @@ previousBtn.addEventListener("click", () => {
    current5 -= 8;
    current6 -= 8;
    current7 -= 8;
-
    subList.classList.add("hide");
    showLoaderList();
    setTimeout(() => {
