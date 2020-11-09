@@ -1,3 +1,4 @@
+@import "loader06";
 @mixin img {
    width: 260px;
    height: 150px;
@@ -16,6 +17,7 @@ body {
                list-style: none;
                a {
                   padding: 20px;
+                  text-decoration: none;
                }
             }
          }
@@ -25,7 +27,7 @@ body {
       article.landing {
          section {
             .card {
-               width: 300px;
+               width: 90%;
                margin: 0 auto;
                height: 400px;
                .card-img {
@@ -37,8 +39,8 @@ body {
                   display: flex;
                   justify-content: center;
                   img {
-                     width: 180px;
-                     height: 150px;
+                     width: 150px;
+                     height: 180px;
                   }
                }
             }
@@ -48,6 +50,10 @@ body {
                justify-content: center;
             }
          }
+      }
+      .loader {
+         @include loader06;
+         margin: 50px auto;
       }
       .searching-page {
          section.search-input {

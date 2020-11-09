@@ -1,18 +1,19 @@
+let hideLandimg = document.querySelector(".landing");
+let showSearch = document.querySelector(".searching-page");
 const hideLanding = () => {
-   let hideLandimg = document.querySelector(".landing");
    hideLandimg.classList.add("hide");
-   let showSearch = document.querySelector(".searching-page");
+};
+const showSearching = () => {
    showSearch.classList.remove("hide");
 };
-
-const showLanding = () => {
-   let hideLandimg = document.querySelector(".landing");
-   hideLandimg.classList.remove("hide");
-   let showSearch = document.querySelector(".searching-page");
+const hideSearching = () => {
    showSearch.classList.add("hide");
 };
+const showLanding = () => {
+   hideLandimg.classList.remove("hide");
+};
 
-const defaultData = () => {
+const beersData = () => {
    const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
    cardName0.textContent = beersArr[0].name;
    const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
@@ -29,4 +30,36 @@ const defaultData = () => {
    cardName6.textContent = beersArr[6].name;
    const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
    cardName7.textContent = beersArr[7].name;
+};
+
+const refreshContent = () => {
+   const append = document.querySelector(".list");
+   append.innerHTML = "";
+   currentPageNr = 1;
+   count = 0;
+};
+
+const loader = document.querySelector(".loader");
+const hideLoader = () => {
+   loader.classList.add("hide");
+};
+
+const showLoader = () => {
+   loader.classList.remove("hide");
+};
+const loaderSearch = document.querySelector(".loader-search");
+const hideLoaderSearch = () => {
+   loaderSearch.classList.add("hide");
+};
+
+const showLoaderSearch = () => {
+   loaderSearch.classList.remove("hide");
+};
+const loaderList = document.querySelector(".loader-list");
+const hideLoaderList = () => {
+   loaderList.classList.add("hide");
+};
+
+const showLoaderList = () => {
+   loaderList.classList.remove("hide");
 };

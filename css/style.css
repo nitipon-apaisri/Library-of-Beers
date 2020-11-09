@@ -19,10 +19,11 @@ body header nav ul li {
 
 body header nav ul li a {
   padding: 20px;
+  text-decoration: none;
 }
 
 body main article.landing section .card {
-  width: 300px;
+  width: 90%;
   margin: 0 auto;
   height: 400px;
 }
@@ -44,8 +45,8 @@ body main article.landing section .card .card-img .placeholde-img {
 }
 
 body main article.landing section .card .card-img img {
-  width: 180px;
-  height: 150px;
+  width: 150px;
+  height: 180px;
 }
 
 body main article.landing section .random-butt {
@@ -56,6 +57,78 @@ body main article.landing section .random-butt {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+body main .loader {
+  width: 56px;
+  height: 56px;
+  border: 8px solid transparent;
+  border-radius: 50%;
+  position: relative;
+  margin: 50px auto;
+}
+
+body main .loader::before {
+  content: "";
+  border: 8px solid rgba(0, 82, 236, 0.5);
+  border-radius: 50%;
+  width: 67.2px;
+  height: 67.2px;
+  position: absolute;
+  top: -13.6px;
+  left: -13.6px;
+  -webkit-animation: loader-scale 1s ease-out infinite;
+          animation: loader-scale 1s ease-out infinite;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  opacity: 0;
+}
+
+body main .loader::after {
+  content: "";
+  border: 8px solid #0052ec;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  -webkit-animation: loader-scale 1s ease-out infinite;
+          animation: loader-scale 1s ease-out infinite;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+
+@-webkit-keyframes loader-scale {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes loader-scale {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0;
+  }
 }
 
 body main .searching-page section.search-input .empty .empty-icon i {
