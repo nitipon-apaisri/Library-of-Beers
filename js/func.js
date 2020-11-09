@@ -1,15 +1,16 @@
+let hideLandimg = document.querySelector(".landing");
+let showSearch = document.querySelector(".searching-page");
 const hideLanding = () => {
-   let hideLandimg = document.querySelector(".landing");
    hideLandimg.classList.add("hide");
-   let showSearch = document.querySelector(".searching-page");
+};
+const showSearching = () => {
    showSearch.classList.remove("hide");
 };
-
-const showLanding = () => {
-   let hideLandimg = document.querySelector(".landing");
-   hideLandimg.classList.remove("hide");
-   let showSearch = document.querySelector(".searching-page");
+const hideSearching = () => {
    showSearch.classList.add("hide");
+};
+const showLanding = () => {
+   hideLandimg.classList.remove("hide");
 };
 
 const beersData = () => {
@@ -36,4 +37,29 @@ const refreshContent = () => {
    append.innerHTML = "";
    currentPageNr = 1;
    count = 0;
+};
+
+const loader = document.querySelector(".loader");
+const hideLoader = () => {
+   loader.classList.add("hide");
+};
+
+const showLoader = () => {
+   loader.classList.remove("hide");
+};
+const loaderSearch = document.querySelector(".loader-search");
+const hideLoaderSearch = () => {
+   loaderSearch.classList.add("hide");
+};
+
+const showLoaderSearch = () => {
+   loaderSearch.classList.remove("hide");
+};
+const loaderList = document.querySelector(".loader-list");
+const hideLoaderList = () => {
+   loaderList.classList.add("hide");
+};
+
+const showLoaderList = () => {
+   loaderList.classList.remove("hide");
 };

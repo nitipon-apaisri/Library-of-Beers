@@ -1,5 +1,5 @@
 let randBeer = [];
-
+let randCard = document.querySelector(".card-random");
 const fetchingBeers = async () => {
    await fetch("https://api.punkapi.com/v2/beers/random")
       .then((res) => res.json())
@@ -9,16 +9,21 @@ const fetchingBeers = async () => {
 };
 
 const modal = document.querySelector(".modal");
-
 const rand = document.querySelector(".random");
 rand.addEventListener("click", async () => {
    randBeer = [];
-   await fetchingBeers();
-   const hidePlaceHolderImg = document.querySelector("article.landing > section > .card > .card-img > .placeholde-img ");
-   hidePlaceHolderImg.classList.add("hide");
-   const showImg = document.querySelector("article.landing > section > .card > .card-img > img");
-   showImg.classList.remove("hide");
-   randomBeerInfo(0);
+   randCard.classList.add("hide");
+   fetchingBeers();
+   showLoader();
+   setTimeout(() => {
+      hideLoader();
+      randCard.classList.remove("hide");
+      const hidePlaceHolderImg = document.querySelector("article.landing > section > .card > .card-img > .placeholde-img ");
+      hidePlaceHolderImg.classList.add("hide");
+      const showImg = document.querySelector("article.landing > section > .card > .card-img > img");
+      showImg.classList.remove("hide");
+      randomBeerInfo(0);
+   }, 2000);
 });
 
 const more = document.querySelector(".card > .card-footer > button");
@@ -73,8 +78,18 @@ const randomBeerInfo = (value) => {
 const searchButt = document.querySelector(".search");
 searchButt.addEventListener("click", () => {
    hideLanding();
+   showLoaderSearch();
+   setTimeout(() => {
+      hideLoaderSearch();
+      showSearching();
+   }, 1500);
 });
 const homeButt = document.querySelector(".home");
 homeButt.addEventListener("click", () => {
-   showLanding();
+   hideSearching();
+   showLoaderSearch();
+   setTimeout(() => {
+      hideLoaderSearch();
+      showLanding();
+   }, 1500);
 });

@@ -1,3 +1,4 @@
+@import "loader06";
 @mixin img {
    width: 260px;
    height: 150px;
@@ -48,6 +49,10 @@ body {
                justify-content: center;
             }
          }
+      }
+      .loader {
+         @include loader06;
+         margin: 50px auto;
       }
       .searching-page {
          section.search-input {

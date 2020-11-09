@@ -20,9 +20,10 @@
       </header>
       <main>
          <div class="container">
-            <article class="col-4 col-mx-auto landing">
+            <article class="col-4 col-mx-auto landing hide">
                <section>
-                  <div class="card">
+                  <div class="loader hide"></div>
+                  <div class="card card-random">
                      <div class="card-img">
                         <div class="placeholde-img"></div>
                         <img alt="beer" class="img-responsive img hide" />
@@ -41,7 +42,8 @@
                   </div>
                </section>
             </article>
-            <article class="columns searching-page hide">
+            <div class="loader loader-search hide"></div>
+            <article class="columns searching-page">
                <section class="column col-12 search-input">
                   <div class="empty">
                      <div class="empty-icon">
@@ -53,7 +55,8 @@
                      </div>
                   </div>
                </section>
-               <section class="column col-12 col-mx-auto list"></section>
+               <div class="loader loader-list hide"></div>
+               <section class="column col-12 col-mx-auto list hide"></section>
                <section class="sub-list col-12 col-mx-auto list hide">
                   <div class="columns">
                      <div class="cover-card column col-3 card-0">
