@@ -114,8 +114,12 @@ body {
          margin: 50px auto;
       }
       .searching-page {
+         margin-top: 50px;
          section.search-input {
             .empty {
+               border-radius: 20px;
+               background: #eaeef0;
+               box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
                .empty-icon {
                   i {
                      font-size: 2rem;
@@ -176,6 +180,10 @@ body {
       }
       .modal {
          .modal-container {
+            border-radius: 20px;
+            padding: 20px;
+            background: #eaeef0;
+            box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
             width: 450px;
             .modal-body {
                .modal-content {
@@ -184,8 +192,8 @@ body {
                   .card-img {
                      margin: auto;
                      img {
-                        width: 260px;
-                        height: 320px;
+                        width: 180px;
+                        height: 240px;
                      }
                   }
                }

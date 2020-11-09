@@ -196,6 +196,17 @@ body main .loader::after {
   }
 }
 
+body main .searching-page {
+  margin-top: 50px;
+}
+
+body main .searching-page section.search-input .empty {
+  border-radius: 20px;
+  background: #eaeef0;
+  -webkit-box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+          box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+}
+
 body main .searching-page section.search-input .empty .empty-icon i {
   font-size: 2rem;
 }
@@ -258,6 +269,11 @@ body main .searching-page .pagine-chan ul.pagi p {
 }
 
 body main .modal .modal-container {
+  border-radius: 20px;
+  padding: 20px;
+  background: #eaeef0;
+  -webkit-box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+          box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
   width: 450px;
 }
 
@@ -276,7 +292,7 @@ body main .modal .modal-container .modal-body .modal-content .card-img {
 }
 
 body main .modal .modal-container .modal-body .modal-content .card-img img {
-  width: 260px;
-  height: 320px;
+  width: 180px;
+  height: 240px;
 }
 /*# sourceMappingURL=style.css.map */
