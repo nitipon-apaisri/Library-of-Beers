@@ -1,5 +1,5 @@
 let randBeer = [];
-let randCard = document.querySelector(".card-random");
+let randCard = document.querySelector(".cover-inside");
 const fetchingBeers = async () => {
    await fetch("https://api.punkapi.com/v2/beers/random")
       .then((res) => res.json())
@@ -18,15 +18,15 @@ rand.addEventListener("click", async () => {
    setTimeout(() => {
       hideLoader();
       randCard.classList.remove("hide");
-      const hidePlaceHolderImg = document.querySelector("article.landing > section > .card > .card-img > .placeholde-img ");
+      const hidePlaceHolderImg = document.querySelector("article.landing > section > .card > .cover-inside > .card-img > .placeholde-img ");
       hidePlaceHolderImg.classList.add("hide");
-      const showImg = document.querySelector("article.landing > section > .card > .card-img > img");
+      const showImg = document.querySelector("article.landing > section > .card > .cover-inside > .card-img > img");
       showImg.classList.remove("hide");
       randomBeerInfo(0);
    }, 2000);
 });
 
-const more = document.querySelector(".card > .card-footer > button");
+const more = document.querySelector(".card > .cover-inside >.card-footer > button");
 more.addEventListener("click", () => {
    modal.classList.add("active");
    const nameInModal = document.querySelector(".modal-title");
@@ -47,8 +47,8 @@ closeButt.addEventListener("click", () => {
 });
 
 const randomBeerInfo = (value) => {
-   const name = document.querySelector(".card > .card-header > .card-title > .name");
-   const img = document.querySelector(".card > .card-img > img ");
+   const name = document.querySelector(".card > .cover-inside > .card-header > .card-title > .name");
+   const img = document.querySelector(".card > .cover-inside > .card-img > img ");
    img.src = randBeer[value].image_url;
    name.innerHTML = randBeer[value].name;
    for (const beerIngredients of randBeer[value].ingredients.malt) {

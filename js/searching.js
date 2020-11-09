@@ -15,7 +15,7 @@ let beersArr = [];
 submit.addEventListener("click", async () => {
    refreshContent();
    beersArr = [];
-   const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=40";
+   const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=80";
    await fetch(results)
       .then((res) => res.json())
       .then((beers) => {
@@ -23,27 +23,35 @@ submit.addEventListener("click", async () => {
             beersArr.push(beer);
          });
       });
-   if (beersArr.length > 8) {
-      showLoaderList();
-      setTimeout(() => {
-         hideLoaderList();
-         subList.classList.remove("hide");
-         nexBtn.classList.remove("hide");
-         currentPage.classList.remove("hide");
-         currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
-         beersData();
-      }, 1500);
-   } else {
-      showLoaderList();
-      setTimeout(() => {
-         hideLoaderList();
-         mainList.classList.remove("hide");
-         subList.classList.add("hide");
-      }, 1500);
-      renderCard();
-      setValue();
-   }
-   seeMore();
+   showLoaderList();
+   mainList.classList.add("hide");
+   subList.classList.add("hide");
+   setTimeout(() => {
+      if (beersArr.length > 8) {
+         showLoaderList();
+         setTimeout(() => {
+            hideLoaderList();
+            subList.classList.remove("hide");
+            nexBtn.classList.remove("hide");
+            currentPage.classList.remove("hide");
+            seeMore();
+            currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
+            beersData();
+         }, 1000);
+      } else {
+         currentPage.classList.add("hide");
+         nexBtn.classList.add("hide");
+         showLoaderList();
+         setTimeout(() => {
+            hideLoaderList();
+            mainList.classList.remove("hide");
+            subList.classList.add("hide");
+            seeMore();
+         }, 1000);
+         renderCard();
+         setValue();
+      }
+   }, 500);
    input.value = "";
    console.log(beersArr.length);
 });
@@ -176,7 +184,7 @@ nexBtn.addEventListener("click", () => {
       const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
       cardName7.textContent = beersArr[current7].name;
    }, 1500);
-   if (count === 32) {
+   if (count === beersArr.length - 8) {
       nexBtn.classList.add("hide");
    }
    console.log(count);

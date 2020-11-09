@@ -19,10 +19,11 @@ body header nav ul li {
 
 body header nav ul li a {
   padding: 20px;
+  text-decoration: none;
 }
 
 body main article.landing section .card {
-  width: 300px;
+  width: 90%;
   margin: 0 auto;
   height: 400px;
 }
@@ -44,8 +45,8 @@ body main article.landing section .card .card-img .placeholde-img {
 }
 
 body main article.landing section .card .card-img img {
-  width: 180px;
-  height: 150px;
+  width: 150px;
+  height: 180px;
 }
 
 body main article.landing section .random-butt {
