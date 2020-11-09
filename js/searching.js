@@ -176,6 +176,9 @@ nexBtn.addEventListener("click", () => {
       const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
       cardName7.textContent = beersArr[current7].name;
    }, 1500);
+   if (count === 32) {
+      nexBtn.classList.add("hide");
+   }
    console.log(count);
    console.log(`"newValue:" ${count}`);
 });
@@ -215,6 +218,9 @@ previousBtn.addEventListener("click", () => {
       const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
       cardName7.textContent = beersArr[current7].name;
    }, 1500);
+   if (count === 0) {
+      previousBtn.classList.add("hide");
+   }
    console.log(count);
    console.log(`"newValue:" ${count}`);
 });
