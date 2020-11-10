@@ -13,6 +13,9 @@ let firstPage = [];
 let newValue = 0;
 let beersArr = [];
 //---------- Searching feature ----------
+window.addEventListener("load", () => {
+   localStorage.clear();
+});
 submit.addEventListener("click", async () => {
    refreshContent();
    beersArr = [];
