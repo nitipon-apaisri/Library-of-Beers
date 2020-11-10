@@ -9,9 +9,13 @@ const subList = document.querySelector(".sub-list");
 const previousBtn = document.querySelector(".previous");
 const nexBtn = document.querySelector(".next");
 const currentPage = document.querySelector(".current-page");
+let firstPage = [];
 let newValue = 0;
 let beersArr = [];
 //---------- Searching feature ----------
+window.addEventListener("load", () => {
+   localStorage.clear();
+});
 submit.addEventListener("click", async () => {
    refreshContent();
    beersArr = [];
@@ -28,6 +32,8 @@ submit.addEventListener("click", async () => {
    subList.classList.add("hide");
    setTimeout(() => {
       if (beersArr.length > 8) {
+         firstPage.unshift(beersArr[0], beersArr[1], beersArr[2], beersArr[3], beersArr[4], beersArr[5], beersArr[6], beersArr[7]);
+         localStorage.setItem("page1", JSON.stringify(firstPage));
          showLoaderList();
          setTimeout(() => {
             hideLoaderList();
@@ -41,6 +47,7 @@ submit.addEventListener("click", async () => {
       } else {
          currentPage.classList.add("hide");
          nexBtn.classList.add("hide");
+         previousBtn.classList.add("hide");
          showLoaderList();
          setTimeout(() => {
             hideLoaderList();
@@ -61,44 +68,44 @@ const seeMore = () => {
    seeMoreButt.forEach((butt) => {
       butt.addEventListener("click", () => {
          let buttValue = Number(butt.value);
-         buttValue += count;
          renderInfo(buttValue);
       });
    });
 };
 //---------- Renders info when clicked more butt ----------
 const renderInfo = (buttValue) => {
+   let getLocalData = JSON.parse(localStorage.getItem("page" + currentPageNr));
    modal.classList.add("active");
    const nameInModal = document.querySelector(".modal-title");
-   nameInModal.innerHTML = beersArr[buttValue].name;
+   nameInModal.innerHTML = getLocalData[buttValue].name;
    const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
-   if (beersArr[buttValue].image_url == null) {
+   if (getLocalData[buttValue].image_url == null) {
       modalImg.classList.add("hide");
    } else {
       modalImg.classList.remove("hide");
-      modalImg.src = beersArr[buttValue].image_url;
+      modalImg.src = getLocalData[buttValue].image_url;
    }
    const modaldescription = document.querySelector(".description");
-   modaldescription.innerHTML = `<b>Description:</b> ${beersArr[buttValue].description}`;
+   modaldescription.innerHTML = `<b>Description:</b> ${getLocalData[buttValue].description}`;
    const modalAlco = document.querySelector(".alco-volume");
-   modalAlco.innerHTML = `<b>Volume:</b> ${beersArr[buttValue].volume.value} ${beersArr[buttValue].volume.unit}`;
+   modalAlco.innerHTML = `<b>Volume:</b> ${getLocalData[buttValue].volume.value} ${getLocalData[buttValue].volume.unit}`;
    const tips = document.querySelector(".tips");
-   tips.innerHTML = `<b>Tips:</b> ${beersArr[buttValue].brewers_tips}`;
-   beersArr[buttValue].ingredients.malt.forEach((beerIngredients) => {
+   tips.innerHTML = `<b>Tips:</b> ${getLocalData[buttValue].brewers_tips}`;
+   getLocalData[buttValue].ingredients.malt.forEach((beerIngredients) => {
       const ingredientsList = document.createElement("li");
       const ingredientsUserList = document.querySelector(".modal-content > ul");
       const ingredients = beerIngredients.name;
       ingredientsList.textContent = ingredients;
       ingredientsUserList.appendChild(ingredientsList);
    });
-   beersArr[buttValue].ingredients.hops.forEach((beerHops) => {
+   getLocalData[buttValue].ingredients.hops.forEach((beerHops) => {
       const hopsList = document.createElement("li");
       const hopsUserList = document.querySelector(".modal-content > .hops");
       const hops = beerHops.name;
       hopsList.textContent = hops;
       hopsUserList.appendChild(hopsList);
    });
-   beersArr[buttValue].food_pairing.forEach((beerPairing) => {
+   getLocalData[buttValue].food_pairing.forEach((beerPairing) => {
       const foodList = document.createElement("li");
       const foodUserList = document.querySelector(".modal-content > .food-pairing");
       const food = beerPairing;
@@ -154,45 +161,58 @@ let current4 = 4;
 let current5 = 5;
 let current6 = 6;
 let current7 = 7;
+let localPage = [];
 nexBtn.addEventListener("click", () => {
    previousBtn.classList.remove("hide");
    count += 8;
    currentPageNr += 1;
    currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
-   current0 = 0 + count;
-   current1 = 1 + count;
-   current2 = 2 + count;
-   current3 = 3 + count;
-   current4 = 4 + count;
-   current5 = 5 + count;
-   current6 = 6 + count;
-   current7 = 7 + count;
+   current0 = 0;
+   current1 = 1;
+   current2 = 2;
+   current3 = 3;
+   current4 = 4;
+   current5 = 5;
+   current6 = 6;
+   current7 = 7;
    subList.classList.add("hide");
    showLoaderList();
+   localPage.unshift(
+      beersArr[current0 + count],
+      beersArr[current1 + count],
+      beersArr[current2 + count],
+      beersArr[current3 + count],
+      beersArr[current4 + count],
+      beersArr[current5 + count],
+      beersArr[current6 + count],
+      beersArr[current7 + count]
+   );
+   localStorage.setItem("page" + currentPageNr, JSON.stringify(localPage));
+   let getLocalData = JSON.parse(localStorage.getItem("page" + currentPageNr));
    setTimeout(() => {
       hideLoaderList();
       subList.classList.remove("hide");
       const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
-      cardName0.textContent = beersArr[current0].name;
+      cardName0.textContent = getLocalData[current0].name;
       const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
-      cardName1.textContent = beersArr[current1].name;
+      cardName1.textContent = getLocalData[current1].name;
       const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
-      cardName2.textContent = beersArr[current2].name;
+      cardName2.textContent = getLocalData[current2].name;
       const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
-      cardName3.textContent = beersArr[current3].name;
+      cardName3.textContent = getLocalData[current3].name;
       const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
-      cardName4.textContent = beersArr[current4].name;
+      cardName4.textContent = getLocalData[current4].name;
       const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
-      cardName5.textContent = beersArr[current5].name;
+      cardName5.textContent = getLocalData[current5].name;
       const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
-      cardName6.textContent = beersArr[current6].name;
+      cardName6.textContent = getLocalData[current6].name;
       const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
-      cardName7.textContent = beersArr[current7].name;
+      cardName7.textContent = getLocalData[current7].name;
    }, 1500);
    if (count === beersArr.length - 8) {
       nexBtn.classList.add("hide");
    }
-   console.log(count);
+   console.log(`card0: ${current0}`);
    console.log(`"newValue:" ${count}`);
 });
 //---------- Prevoius funciton ----------
@@ -200,39 +220,42 @@ previousBtn.addEventListener("click", () => {
    count -= 8;
    currentPageNr -= 1;
    currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
-   current0 -= 8;
-   current1 -= 8;
-   current2 -= 8;
-   current3 -= 8;
-   current4 -= 8;
-   current5 -= 8;
-   current6 -= 8;
-   current7 -= 8;
+   current0 = 0;
+   current1 = 1;
+   current2 = 2;
+   current3 = 3;
+   current4 = 4;
+   current5 = 5;
+   current6 = 6;
+   current7 = 7;
    subList.classList.add("hide");
+   console.log(current0);
    showLoaderList();
+   console.log(currentPageNr);
+   let getLocalData = JSON.parse(localStorage.getItem("page" + currentPageNr));
    setTimeout(() => {
       hideLoaderList();
       subList.classList.remove("hide");
       const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
-      cardName0.textContent = beersArr[current0].name;
+      cardName0.textContent = getLocalData[current0].name;
       const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
-      cardName1.textContent = beersArr[current1].name;
+      cardName1.textContent = getLocalData[current1].name;
       const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
-      cardName2.textContent = beersArr[current2].name;
+      cardName2.textContent = getLocalData[current2].name;
       const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
-      cardName3.textContent = beersArr[current3].name;
+      cardName3.textContent = getLocalData[current3].name;
       const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
-      cardName4.textContent = beersArr[current4].name;
+      cardName4.textContent = getLocalData[current4].name;
       const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
-      cardName5.textContent = beersArr[current5].name;
+      cardName5.textContent = getLocalData[current5].name;
       const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
-      cardName6.textContent = beersArr[current6].name;
+      cardName6.textContent = getLocalData[current6].name;
       const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
-      cardName7.textContent = beersArr[current7].name;
+      cardName7.textContent = getLocalData[current7].name;
    }, 1500);
    if (count === 0) {
       previousBtn.classList.add("hide");
    }
-   console.log(count);
+   console.log(`card0: ${current0}`);
    console.log(`"newValue:" ${count}`);
 });
