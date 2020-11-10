@@ -29,7 +29,7 @@ submit.addEventListener("click", async () => {
    subList.classList.add("hide");
    setTimeout(() => {
       if (beersArr.length > 8) {
-         firstPage.push(beersArr[0], beersArr[1], beersArr[2], beersArr[3], beersArr[4], beersArr[5], beersArr[6], beersArr[7]);
+         firstPage.unshift(beersArr[0], beersArr[1], beersArr[2], beersArr[3], beersArr[4], beersArr[5], beersArr[6], beersArr[7]);
          localStorage.setItem("page1", JSON.stringify(firstPage));
          showLoaderList();
          setTimeout(() => {
@@ -65,44 +65,44 @@ const seeMore = () => {
    seeMoreButt.forEach((butt) => {
       butt.addEventListener("click", () => {
          let buttValue = Number(butt.value);
-         buttValue += count;
          renderInfo(buttValue);
       });
    });
 };
 //---------- Renders info when clicked more butt ----------
 const renderInfo = (buttValue) => {
+   let getLocalData = JSON.parse(localStorage.getItem("page" + currentPageNr));
    modal.classList.add("active");
    const nameInModal = document.querySelector(".modal-title");
-   nameInModal.innerHTML = beersArr[buttValue].name;
+   nameInModal.innerHTML = getLocalData[buttValue].name;
    const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
-   if (beersArr[buttValue].image_url == null) {
+   if (getLocalData[buttValue].image_url == null) {
       modalImg.classList.add("hide");
    } else {
       modalImg.classList.remove("hide");
-      modalImg.src = beersArr[buttValue].image_url;
+      modalImg.src = getLocalData[buttValue].image_url;
    }
    const modaldescription = document.querySelector(".description");
-   modaldescription.innerHTML = `<b>Description:</b> ${beersArr[buttValue].description}`;
+   modaldescription.innerHTML = `<b>Description:</b> ${getLocalData[buttValue].description}`;
    const modalAlco = document.querySelector(".alco-volume");
-   modalAlco.innerHTML = `<b>Volume:</b> ${beersArr[buttValue].volume.value} ${beersArr[buttValue].volume.unit}`;
+   modalAlco.innerHTML = `<b>Volume:</b> ${getLocalData[buttValue].volume.value} ${getLocalData[buttValue].volume.unit}`;
    const tips = document.querySelector(".tips");
-   tips.innerHTML = `<b>Tips:</b> ${beersArr[buttValue].brewers_tips}`;
-   beersArr[buttValue].ingredients.malt.forEach((beerIngredients) => {
+   tips.innerHTML = `<b>Tips:</b> ${getLocalData[buttValue].brewers_tips}`;
+   getLocalData[buttValue].ingredients.malt.forEach((beerIngredients) => {
       const ingredientsList = document.createElement("li");
       const ingredientsUserList = document.querySelector(".modal-content > ul");
       const ingredients = beerIngredients.name;
       ingredientsList.textContent = ingredients;
       ingredientsUserList.appendChild(ingredientsList);
    });
-   beersArr[buttValue].ingredients.hops.forEach((beerHops) => {
+   getLocalData[buttValue].ingredients.hops.forEach((beerHops) => {
       const hopsList = document.createElement("li");
       const hopsUserList = document.querySelector(".modal-content > .hops");
       const hops = beerHops.name;
       hopsList.textContent = hops;
       hopsUserList.appendChild(hopsList);
    });
-   beersArr[buttValue].food_pairing.forEach((beerPairing) => {
+   getLocalData[buttValue].food_pairing.forEach((beerPairing) => {
       const foodList = document.createElement("li");
       const foodUserList = document.querySelector(".modal-content > .food-pairing");
       const food = beerPairing;
