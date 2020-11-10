@@ -39,27 +39,20 @@ body {
   margin: auto;
   background-color: #eaeef0;
 }
-
 body header nav ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
-
 body header nav ul li {
   list-style: none;
 }
-
 body header nav ul li a {
   cursor: pointer;
   padding: 20px;
   text-decoration: none;
 }
-
 body main article.landing {
   margin-top: 100px;
 }
-
 body main article.landing section .card {
   width: 90%;
   margin: 0 auto;
@@ -69,62 +62,44 @@ body main article.landing section .card {
   border-radius: 20px;
   border-radius: 20px;
   background: #eaeef0;
-  -webkit-box-shadow: 38px 38px 76px #dce0e2, -38px -38px 76px #f8fcfe;
-          box-shadow: 38px 38px 76px #dce0e2, -38px -38px 76px #f8fcfe;
+  box-shadow: 38px 38px 76px #dce0e2, -38px -38px 76px #f8fcfe;
 }
-
 body main article.landing section .card .card-header {
   padding-left: 20px;
   padding-right: 20px;
 }
-
 body main article.landing section .card .card-img {
   padding-top: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
-
 body main article.landing section .card .card-img .placeholde-img {
   background-color: #101010;
   width: 220px;
   height: 140px;
 }
-
 body main article.landing section .card .card-img img {
   width: 150px;
   height: 180px;
 }
-
 body main article.landing section .random-butt {
   margin-top: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
-
 body main article.landing section.beer-info .card .card-body {
   scroll-behavior: smooth;
   overflow: scroll;
   scrollbar-width: thin;
 }
-
 body main article.landing section.beer-info .card .card-body -webkit-scrollbar {
   width: 12px;
 }
-
 body main article.landing section.beer-ingredients .card .card-body {
   scroll-behavior: smooth;
   overflow: scroll;
   scrollbar-width: thin;
 }
-
 body main .loader {
   width: 56px;
   height: 56px;
@@ -133,7 +108,6 @@ body main .loader {
   position: relative;
   margin: 50px auto;
 }
-
 body main .loader::before {
   content: "";
   border: 8px solid rgba(0, 82, 236, 0.5);
@@ -143,13 +117,10 @@ body main .loader::before {
   position: absolute;
   top: -13.6px;
   left: -13.6px;
-  -webkit-animation: loader-scale 1s ease-out infinite;
-          animation: loader-scale 1s ease-out infinite;
-  -webkit-animation-delay: 1s;
-          animation-delay: 1s;
+  animation: loader-scale 1s ease-out infinite;
+  animation-delay: 1s;
   opacity: 0;
 }
-
 body main .loader::after {
   content: "";
   border: 8px solid #0052ec;
@@ -159,141 +130,92 @@ body main .loader::after {
   position: absolute;
   top: -8px;
   left: -8px;
-  -webkit-animation: loader-scale 1s ease-out infinite;
-          animation: loader-scale 1s ease-out infinite;
-  -webkit-animation-delay: 0.5s;
-          animation-delay: 0.5s;
+  animation: loader-scale 1s ease-out infinite;
+  animation-delay: 0.5s;
 }
-
-@-webkit-keyframes loader-scale {
-  0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 0;
-  }
-}
-
 @keyframes loader-scale {
   0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
     opacity: 0;
   }
   50% {
     opacity: 1;
   }
   100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     opacity: 0;
   }
 }
-
 body main .searching-page {
   margin-top: 50px;
 }
-
 body main .searching-page section.search-input .empty {
   background: #eaeef0;
   border-radius: 20px;
-  -webkit-box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
-          box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+  box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
 }
-
 body main .searching-page section.search-input .empty .empty-icon i {
   font-size: 2rem;
 }
-
 body main .searching-page section.search-input .empty .empty-action button {
   margin-top: 20px;
 }
-
 body main .searching-page section.list {
   margin: 20px 0;
 }
-
 body main .searching-page section.list .columns .cover-card {
   margin-bottom: 20px;
 }
-
 body main .searching-page section.list .columns .cover-card .card {
   padding: 10px;
   border: none;
   background: #eaeef0;
   border-radius: 20px;
-  -webkit-box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
-          box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+  box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
 }
-
 body main .searching-page section.list .columns .cover-card .card .card-header .card-title h5 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 220px;
 }
-
 body main .searching-page .pagine-chan {
   width: 100%;
   margin: auto;
 }
-
 body main .searching-page .pagine-chan ul.pagi {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   margin: 0;
 }
-
 body main .searching-page .pagine-chan ul.pagi li {
   list-style: none;
 }
-
 body main .searching-page .pagine-chan ul.pagi li a {
   cursor: pointer;
   text-decoration: none;
 }
-
 body main .searching-page .pagine-chan ul.pagi p {
   margin: 0;
   padding: 8px;
 }
-
 body main .modal .modal-container {
   padding: 20px;
   background: #eaeef0;
   border-radius: 20px;
-  -webkit-box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
-          box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+  box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
   width: 450px;
 }
-
 body main .modal .modal-container .modal-body .modal-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
-
 body main .modal .modal-container .modal-body .modal-content .card-img {
   margin: auto;
 }
-
 body main .modal .modal-container .modal-body .modal-content .card-img img {
   width: 180px;
   height: 240px;
 }
+
 /*# sourceMappingURL=style.css.map */
