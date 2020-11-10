@@ -33,6 +33,7 @@ const beersData = () => {
 };
 const searchButt = document.querySelector(".search");
 searchButt.addEventListener("click", () => {
+   hideSearching();
    hideLanding();
    showLoaderSearch();
    setTimeout(() => {
@@ -42,6 +43,7 @@ searchButt.addEventListener("click", () => {
 });
 const homeButt = document.querySelector(".home");
 homeButt.addEventListener("click", () => {
+   hideLanding();
    hideSearching();
    showLoaderSearch();
    setTimeout(() => {
@@ -57,7 +59,7 @@ const refreshContent = () => {
    count = 0;
 };
 
-const loader = document.querySelector(".loader");
+const loader = document.querySelector(".cover-loader > .loader");
 const hideLoader = () => {
    loader.classList.add("hide");
 };
@@ -82,7 +84,7 @@ const showLoaderList = () => {
    loaderList.classList.remove("hide");
 };
 
-const beerInfoLoader = document.querySelector(".beer-info-loader");
+const beerInfoLoader = document.querySelector(".cover-loader > .beer-info-loader");
 
 const showBeerInfoLoader = () => {
    beerInfoLoader.classList.remove("hide");

@@ -58,14 +58,11 @@ const beerInfo = document.querySelector(".beer-info");
 const beerIngredients = document.querySelector(".beer-ingredients");
 const more = document.querySelector(".card > .cover-inside >.card-footer > button");
 more.addEventListener("click", () => {
-   showBeerInfoLoader();
-   setTimeout(() => {
-      hideBeerInfoLoader();
-      randomBeerInfo(0);
-      beerInfo.classList.remove("hide");
-      beerIngredients.classList.remove("hide");
-      showCardBody();
-   }, 1500);
+   hideBeerInfoLoader();
+   randomBeerInfo(0);
+   beerInfo.classList.remove("hide");
+   beerIngredients.classList.remove("hide");
+   showCardBody();
 });
 
 const closeButt = document.querySelector(".modal > .modal-container > .modal-header > .close");

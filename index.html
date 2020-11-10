@@ -20,7 +20,7 @@
       </header>
       <main>
          <div class="container">
-            <article class="columns landing">
+            <article class="columns landing hide">
                <section class="column col-3 col-mx-auto">
                   <div class="card card-random">
                      <div class="cover-loader">
@@ -45,7 +45,9 @@
                      <button class="random btn btn-primary">random</button>
                   </div>
                </section>
-               <div class="beer-info-loader loader hide"></div>
+               <div class="cover-loader">
+                  <div class="beer-info-loader loader hide"></div>
+               </div>
                <section class="column col-5 beer-info col-mx-auto hide">
                   <div class="card">
                      <div class="card-header">
@@ -76,7 +78,7 @@
             <div class="cover-loader">
                <div class="loader loader-search hide"></div>
             </div>
-            <article class="columns searching-page hide">
+            <article class="columns searching-page">
                <section class="column col-12 search-input">
                   <div class="empty">
                      <div class="empty-icon">
@@ -86,8 +88,8 @@
                         <form class="col-4 col-mx-auto">
                            <input type="text" class="input-beer-name form-input" placeholder="Searching by name" />
                            <p class="validation hide"></p>
+                           <button class="btn btn-primary name-submit">Search</button>
                         </form>
-                        <button class="btn btn-primary name-submit">Send a message</button>
                      </div>
                   </div>
                </section>

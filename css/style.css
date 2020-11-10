@@ -231,6 +231,18 @@ body main .searching-page section.search-input .empty .empty-icon i {
   font-size: 2rem;
 }
 
+body main .searching-page section.search-input .empty .empty-action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body main .searching-page section.search-input .empty .empty-action form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 body main .searching-page section.search-input .empty .empty-action form input {
   border-radius: 4px;
   border: none;
@@ -243,8 +255,8 @@ body main .searching-page section.search-input .empty .empty-action form p {
   text-align: left;
 }
 
-body main .searching-page section.search-input .empty .empty-action button {
-  margin-top: 20px;
+body main .searching-page section.search-input .empty .empty-action form button {
+  margin-left: 10px;
 }
 
 body main .searching-page .loader-list {
