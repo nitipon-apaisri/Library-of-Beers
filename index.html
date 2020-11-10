@@ -20,27 +20,58 @@
       </header>
       <main>
          <div class="container">
-            <article class="col-4 col-mx-auto landing">
-               <section>
-                  <div class="card">
-                     <div class="card-img">
-                        <div class="placeholde-img"></div>
-                        <img alt="beer" class="img-responsive img hide" />
-                     </div>
-                     <div class="card-header">
-                        <div class="card-title">
-                           <h5 class="name">Title</h5>
+            <article class="columns landing">
+               <section class="column col-3 col-mx-auto">
+                  <div class="card card-random">
+                     <div class="loader hide"></div>
+                     <div class="cover-inside">
+                        <div class="card-img">
+                           <div class="placeholde-img"></div>
+                           <img alt="beer" class="img-responsive img hide" />
                         </div>
-                     </div>
-                     <div class="card-footer">
-                        <button class="btn btn-primary">See more</button>
+                        <div class="card-header">
+                           <div class="card-title">
+                              <h5 class="name">Title</h5>
+                           </div>
+                        </div>
+                        <div class="card-footer">
+                           <button class="btn btn-primary">See more</button>
+                        </div>
                      </div>
                   </div>
                   <div class="random-butt">
                      <button class="random btn btn-primary">random</button>
                   </div>
                </section>
+               <div class="beer-info-loader loader hide"></div>
+               <section class="column col-5 beer-info col-mx-auto hide">
+                  <div class="card">
+                     <div class="card-header">
+                        <div class="card-title">
+                           <h3 class="name"></h3>
+                        </div>
+                     </div>
+                     <div class="card-body">
+                        <p class="description"></p>
+                        <p class="alco-volume"></p>
+                        <p class="tips"></p>
+                     </div>
+                  </div>
+               </section>
+               <section class="column col-3 beer-ingredients col-mx-auto hide">
+                  <div class="card">
+                     <div class="card-body">
+                        <h5 class="ingredient-title"></h5>
+                        <ul class="ingredients"></ul>
+                        <h5 class="hop-title"></h5>
+                        <ul class="hops"></ul>
+                        <h5 class="food-pairing-title"></h5>
+                        <ul class="food-pairing"></ul>
+                     </div>
+                  </div>
+               </section>
             </article>
+            <div class="loader loader-search hide"></div>
             <article class="columns searching-page hide">
                <section class="column col-12 search-input">
                   <div class="empty">
@@ -53,8 +84,9 @@
                      </div>
                   </div>
                </section>
-               <section class="column col-12 col-mx-auto list"></section>
-               <section class="sub-list col-12 col-mx-auto list hide">
+               <div class="loader loader-list hide"></div>
+               <section class="column col-12 col-mx-auto list hide"></section>
+               <section class="sub-list column col-12 col-mx-auto list hide">
                   <div class="columns">
                      <div class="cover-card column col-3 card-0">
                         <div class="card">

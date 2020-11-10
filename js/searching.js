@@ -4,6 +4,7 @@ let currentPageNr = 1;
 let perPage = 8;
 const input = document.querySelector(".input-beer-name");
 const submit = document.querySelector(".name-submit");
+const mainList = document.querySelector("section.list");
 const subList = document.querySelector(".sub-list");
 const previousBtn = document.querySelector(".previous");
 const nexBtn = document.querySelector(".next");
@@ -14,7 +15,7 @@ let beersArr = [];
 submit.addEventListener("click", async () => {
    refreshContent();
    beersArr = [];
-   const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=40";
+   const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=80";
    await fetch(results)
       .then((res) => res.json())
       .then((beers) => {
@@ -22,18 +23,35 @@ submit.addEventListener("click", async () => {
             beersArr.push(beer);
          });
       });
-   if (beersArr.length > 8) {
-      subList.classList.remove("hide");
-      nexBtn.classList.remove("hide");
-      currentPage.classList.remove("hide");
-      currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
-      beersData();
-   } else {
-      subList.classList.add("hide");
-      renderCard();
-      setValue();
-   }
-   seeMore();
+   showLoaderList();
+   mainList.classList.add("hide");
+   subList.classList.add("hide");
+   setTimeout(() => {
+      if (beersArr.length > 8) {
+         showLoaderList();
+         setTimeout(() => {
+            hideLoaderList();
+            subList.classList.remove("hide");
+            nexBtn.classList.remove("hide");
+            currentPage.classList.remove("hide");
+            seeMore();
+            currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
+            beersData();
+         }, 1000);
+      } else {
+         currentPage.classList.add("hide");
+         nexBtn.classList.add("hide");
+         showLoaderList();
+         setTimeout(() => {
+            hideLoaderList();
+            mainList.classList.remove("hide");
+            subList.classList.add("hide");
+            seeMore();
+         }, 1000);
+         renderCard();
+         setValue();
+      }
+   }, 500);
    input.value = "";
    console.log(beersArr.length);
 });
@@ -144,22 +162,31 @@ nexBtn.addEventListener("click", () => {
    current5 = 5 + count;
    current6 = 6 + count;
    current7 = 7 + count;
-   const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
-   cardName0.textContent = beersArr[current0].name;
-   const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
-   cardName1.textContent = beersArr[current1].name;
-   const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
-   cardName2.textContent = beersArr[current2].name;
-   const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
-   cardName3.textContent = beersArr[current3].name;
-   const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
-   cardName4.textContent = beersArr[current4].name;
-   const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
-   cardName5.textContent = beersArr[current5].name;
-   const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
-   cardName6.textContent = beersArr[current6].name;
-   const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
-   cardName7.textContent = beersArr[current7].name;
+   subList.classList.add("hide");
+   showLoaderList();
+   setTimeout(() => {
+      hideLoaderList();
+      subList.classList.remove("hide");
+      const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
+      cardName0.textContent = beersArr[current0].name;
+      const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
+      cardName1.textContent = beersArr[current1].name;
+      const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
+      cardName2.textContent = beersArr[current2].name;
+      const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
+      cardName3.textContent = beersArr[current3].name;
+      const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
+      cardName4.textContent = beersArr[current4].name;
+      const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
+      cardName5.textContent = beersArr[current5].name;
+      const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
+      cardName6.textContent = beersArr[current6].name;
+      const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
+      cardName7.textContent = beersArr[current7].name;
+   }, 1500);
+   if (count === beersArr.length - 8) {
+      nexBtn.classList.add("hide");
+   }
    console.log(count);
    console.log(`"newValue:" ${count}`);
 });
@@ -176,23 +203,31 @@ previousBtn.addEventListener("click", () => {
    current5 -= 8;
    current6 -= 8;
    current7 -= 8;
-   previousBtn.classList.remove("hide");
-   const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
-   cardName0.textContent = beersArr[current0].name;
-   const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
-   cardName1.textContent = beersArr[current1].name;
-   const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
-   cardName2.textContent = beersArr[current2].name;
-   const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
-   cardName3.textContent = beersArr[current3].name;
-   const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
-   cardName4.textContent = beersArr[current4].name;
-   const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
-   cardName5.textContent = beersArr[current5].name;
-   const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
-   cardName6.textContent = beersArr[current6].name;
-   const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
-   cardName7.textContent = beersArr[current7].name;
+   subList.classList.add("hide");
+   showLoaderList();
+   setTimeout(() => {
+      hideLoaderList();
+      subList.classList.remove("hide");
+      const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
+      cardName0.textContent = beersArr[current0].name;
+      const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
+      cardName1.textContent = beersArr[current1].name;
+      const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
+      cardName2.textContent = beersArr[current2].name;
+      const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
+      cardName3.textContent = beersArr[current3].name;
+      const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
+      cardName4.textContent = beersArr[current4].name;
+      const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
+      cardName5.textContent = beersArr[current5].name;
+      const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
+      cardName6.textContent = beersArr[current6].name;
+      const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
+      cardName7.textContent = beersArr[current7].name;
+   }, 1500);
+   if (count === 0) {
+      previousBtn.classList.add("hide");
+   }
    console.log(count);
    console.log(`"newValue:" ${count}`);
 });

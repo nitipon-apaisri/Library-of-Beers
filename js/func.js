@@ -1,15 +1,16 @@
+let hideLandimg = document.querySelector(".landing");
+let showSearch = document.querySelector(".searching-page");
 const hideLanding = () => {
-   let hideLandimg = document.querySelector(".landing");
    hideLandimg.classList.add("hide");
-   let showSearch = document.querySelector(".searching-page");
+};
+const showSearching = () => {
    showSearch.classList.remove("hide");
 };
-
-const showLanding = () => {
-   let hideLandimg = document.querySelector(".landing");
-   hideLandimg.classList.remove("hide");
-   let showSearch = document.querySelector(".searching-page");
+const hideSearching = () => {
    showSearch.classList.add("hide");
+};
+const showLanding = () => {
+   hideLandimg.classList.remove("hide");
 };
 
 const beersData = () => {
@@ -30,10 +31,62 @@ const beersData = () => {
    const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
    cardName7.textContent = beersArr[7].name;
 };
+const searchButt = document.querySelector(".search");
+searchButt.addEventListener("click", () => {
+   hideLanding();
+   showLoaderSearch();
+   setTimeout(() => {
+      hideLoaderSearch();
+      showSearching();
+   }, 1500);
+});
+const homeButt = document.querySelector(".home");
+homeButt.addEventListener("click", () => {
+   hideSearching();
+   showLoaderSearch();
+   setTimeout(() => {
+      hideLoaderSearch();
+      showLanding();
+   }, 1500);
+});
 
 const refreshContent = () => {
    const append = document.querySelector(".list");
    append.innerHTML = "";
    currentPageNr = 1;
    count = 0;
+};
+
+const loader = document.querySelector(".loader");
+const hideLoader = () => {
+   loader.classList.add("hide");
+};
+
+const showLoader = () => {
+   loader.classList.remove("hide");
+};
+const loaderSearch = document.querySelector(".loader-search");
+const hideLoaderSearch = () => {
+   loaderSearch.classList.add("hide");
+};
+
+const showLoaderSearch = () => {
+   loaderSearch.classList.remove("hide");
+};
+const loaderList = document.querySelector(".loader-list");
+const hideLoaderList = () => {
+   loaderList.classList.add("hide");
+};
+
+const showLoaderList = () => {
+   loaderList.classList.remove("hide");
+};
+
+const beerInfoLoader = document.querySelector(".beer-info-loader");
+
+const showBeerInfoLoader = () => {
+   beerInfoLoader.classList.remove("hide");
+};
+const hideBeerInfoLoader = () => {
+   beerInfoLoader.classList.add("hide");
 };

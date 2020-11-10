@@ -1,5 +1,12 @@
+//---------- Global varaialbes ----------
 let randBeer = [];
-
+let randCard = document.querySelector(".cover-inside");
+const cardBody = document.querySelectorAll(".card-body");
+const name = document.querySelector(".card > .cover-inside > .card-header > .card-title > .name");
+const img = document.querySelector(".card > .cover-inside > .card-img > img ");
+const beerInfoName = document.querySelector(".beer-info > .card > .card-header > .card-title > h3");
+const modal = document.querySelector(".modal");
+//---------- Fetching beer by random ----------
 const fetchingBeers = async () => {
    await fetch("https://api.punkapi.com/v2/beers/random")
       .then((res) => res.json())
@@ -7,55 +14,71 @@ const fetchingBeers = async () => {
          randBeer.push(beers[0]);
       });
 };
+const hideCardBody = () => {
+   cardBody.forEach((hide) => {
+      hide.classList.add("hide");
+   });
+};
+const showCardBody = () => {
+   cardBody.forEach((hide) => {
+      hide.classList.remove("hide");
+   });
+};
 
-const modal = document.querySelector(".modal");
-
+//---------- Random a beer from fetching function ----------
 const rand = document.querySelector(".random");
 rand.addEventListener("click", async () => {
    randBeer = [];
-   await fetchingBeers();
-   const hidePlaceHolderImg = document.querySelector("article.landing > section > .card > .card-img > .placeholde-img ");
-   hidePlaceHolderImg.classList.add("hide");
-   const showImg = document.querySelector("article.landing > section > .card > .card-img > img");
-   showImg.classList.remove("hide");
-   randomBeerInfo(0);
+   randCard.classList.add("hide");
+   beerInfoName.classList.add("hide");
+   fetchingBeers();
+   showLoader();
+   hideCardBody();
+   setTimeout(() => {
+      hideLoader();
+      beerInfoName.classList.remove("hide");
+      randCard.classList.remove("hide");
+      const hidePlaceHolderImg = document.querySelector("article.landing > section > .card > .cover-inside > .card-img > .placeholde-img ");
+      hidePlaceHolderImg.classList.add("hide");
+      const showImg = document.querySelector("article.landing > section > .card > .cover-inside > .card-img > img");
+      showImg.classList.remove("hide");
+      img.src = randBeer[0].image_url;
+      name.innerHTML = randBeer[0].name;
+      showCardBody();
+      showBeerInfo();
+   }, 2000);
 });
-
-const more = document.querySelector(".card > .card-footer > button");
+//---------- Show more data function ----------
+const beerInfo = document.querySelector(".beer-info");
+const beerIngredients = document.querySelector(".beer-ingredients");
+const more = document.querySelector(".card > .cover-inside >.card-footer > button");
 more.addEventListener("click", () => {
-   modal.classList.add("active");
-   const nameInModal = document.querySelector(".modal-title");
-   nameInModal.innerHTML = randBeer[0].name;
-   const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
-   modalImg.src = randBeer[0].image_url;
-   const modaldescription = document.querySelector(".description");
-   modaldescription.innerHTML = `<b>Description:</b> ${randBeer[0].description}`;
-   const modalAlco = document.querySelector(".alco-volume");
-   modalAlco.innerHTML = `<b>Volume:</b> ${randBeer[0].volume.value} ${randBeer[0].volume.unit}`;
-   const tips = document.querySelector(".tips");
-   tips.innerHTML = `<b>Tips:</b> ${randBeer[0].brewers_tips}`;
+   showBeerInfoLoader();
+   setTimeout(() => {
+      hideBeerInfoLoader();
+      randomBeerInfo(0);
+      beerInfo.classList.remove("hide");
+      beerIngredients.classList.remove("hide");
+      showCardBody();
+   }, 1500);
 });
 
 const closeButt = document.querySelector(".modal > .modal-container > .modal-header > .close");
 closeButt.addEventListener("click", () => {
    modal.classList.remove("active");
 });
-
+//---------- loop beer info ----------
 const randomBeerInfo = (value) => {
-   const name = document.querySelector(".card > .card-header > .card-title > .name");
-   const img = document.querySelector(".card > .card-img > img ");
-   img.src = randBeer[value].image_url;
-   name.innerHTML = randBeer[value].name;
    for (const beerIngredients of randBeer[value].ingredients.malt) {
       const ingredientsList = document.createElement("li");
-      const ingredientsUserList = document.querySelector(".modal-content > ul");
+      const ingredientsUserList = document.querySelector(".beer-ingredients > .card > .card-body > .ingredients");
       const ingredients = beerIngredients.name;
       ingredientsList.textContent = ingredients;
       ingredientsUserList.appendChild(ingredientsList);
    }
    for (const beerHops of randBeer[value].ingredients.hops) {
       const hopsList = document.createElement("li");
-      const hopsUserList = document.querySelector(".modal-content > .hops");
+      const hopsUserList = document.querySelector(".beer-ingredients > .card > .card-body > .hops");
       const hops = beerHops.name;
       hopsList.textContent = hops;
       hopsUserList.appendChild(hopsList);
@@ -63,18 +86,26 @@ const randomBeerInfo = (value) => {
 
    for (const beerPairing of randBeer[value].food_pairing) {
       const foodList = document.createElement("li");
-      const foodUserList = document.querySelector(".modal-content > .food-pairing");
+      const foodUserList = document.querySelector(".beer-ingredients > .card > .card-body > .food-pairing");
       const food = beerPairing;
       foodList.textContent = food;
       foodUserList.appendChild(foodList);
    }
 };
-
-const searchButt = document.querySelector(".search");
-searchButt.addEventListener("click", () => {
-   hideLanding();
-});
-const homeButt = document.querySelector(".home");
-homeButt.addEventListener("click", () => {
-   showLanding();
-});
+//---------- Display beer info ----------
+const showBeerInfo = () => {
+   const nameInModal = document.querySelector(".beer-info > .card > .card-header > .card-title > h3.name");
+   nameInModal.innerHTML = randBeer[0].name;
+   const modaldescription = document.querySelector(".beer-info > .card > .card-body > .description");
+   modaldescription.innerHTML = `<b>Description:</b> ${randBeer[0].description}`;
+   const modalAlco = document.querySelector(".beer-info > .card > .card-body > .alco-volume");
+   modalAlco.innerHTML = `<b>Volume:</b> ${randBeer[0].volume.value} ${randBeer[0].volume.unit}`;
+   const tips = document.querySelector(".beer-info > .card > .card-body > .tips");
+   tips.innerHTML = `<b>Tips:</b> ${randBeer[0].brewers_tips}`;
+   const ingredientTitle = document.querySelector(".ingredient-title");
+   ingredientTitle.textContent = "Ingredient";
+   const hopTitle = document.querySelector(".hop-title");
+   hopTitle.textContent = "Hops";
+   const foodPairingTitle = document.querySelector(".food-pairing-title");
+   foodPairingTitle.textContent = "Food pairing";
+};
