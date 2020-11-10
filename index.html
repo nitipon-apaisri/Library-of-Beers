@@ -23,7 +23,9 @@
             <article class="columns landing">
                <section class="column col-3 col-mx-auto">
                   <div class="card card-random">
-                     <div class="loader hide"></div>
+                     <div class="cover-loader">
+                        <div class="loader hide"></div>
+                     </div>
                      <div class="cover-inside">
                         <div class="card-img">
                            <div class="placeholde-img"></div>
@@ -71,7 +73,9 @@
                   </div>
                </section>
             </article>
-            <div class="loader loader-search hide"></div>
+            <div class="cover-loader">
+               <div class="loader loader-search hide"></div>
+            </div>
             <article class="columns searching-page hide">
                <section class="column col-12 search-input">
                   <div class="empty">
@@ -79,7 +83,10 @@
                         <i class="fas fa-beer"></i>
                      </div>
                      <div class="empty-action">
-                        <input type="text" class="input-beer-name col-4 col-mx-auto form-input" placeholder="Searching by name" />
+                        <form class="col-4 col-mx-auto">
+                           <input type="text" class="input-beer-name form-input" placeholder="Searching by name" />
+                           <p class="validation hide"></p>
+                        </form>
                         <button class="btn btn-primary name-submit">Send a message</button>
                      </div>
                   </div>

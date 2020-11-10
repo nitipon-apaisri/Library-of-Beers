@@ -90,3 +90,12 @@ const showBeerInfoLoader = () => {
 const hideBeerInfoLoader = () => {
    beerInfoLoader.classList.add("hide");
 };
+
+const showValidation = () => {
+   validatioin.classList.remove("hide");
+   validatioin.textContent = "Please fill the input";
+};
+
+const hideValidation = () => {
+   validatioin.classList.add("hide");
+};

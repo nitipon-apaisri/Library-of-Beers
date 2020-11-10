@@ -3,6 +3,7 @@ let count = 0;
 let currentPageNr = 1;
 let perPage = 8;
 const input = document.querySelector(".input-beer-name");
+const validatioin = document.querySelector(".validation");
 const submit = document.querySelector(".name-submit");
 const mainList = document.querySelector("section.list");
 const subList = document.querySelector(".sub-list");
@@ -17,50 +18,55 @@ window.addEventListener("load", () => {
    localStorage.clear();
 });
 submit.addEventListener("click", async () => {
-   refreshContent();
-   beersArr = [];
-   const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=80";
-   await fetch(results)
-      .then((res) => res.json())
-      .then((beers) => {
-         beers.forEach((beer) => {
-            beersArr.push(beer);
+   if (input.value.length == 0) {
+      showValidation();
+   } else {
+      hideValidation();
+      refreshContent();
+      beersArr = [];
+      const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=80";
+      await fetch(results)
+         .then((res) => res.json())
+         .then((beers) => {
+            beers.forEach((beer) => {
+               beersArr.push(beer);
+            });
          });
-      });
-   showLoaderList();
-   mainList.classList.add("hide");
-   subList.classList.add("hide");
-   setTimeout(() => {
-      if (beersArr.length > 8) {
-         firstPage.unshift(beersArr[0], beersArr[1], beersArr[2], beersArr[3], beersArr[4], beersArr[5], beersArr[6], beersArr[7]);
-         localStorage.setItem("page1", JSON.stringify(firstPage));
-         showLoaderList();
-         setTimeout(() => {
-            hideLoaderList();
-            subList.classList.remove("hide");
-            nexBtn.classList.remove("hide");
-            currentPage.classList.remove("hide");
-            seeMore();
-            currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
-            beersData();
-         }, 1000);
-      } else {
-         currentPage.classList.add("hide");
-         nexBtn.classList.add("hide");
-         previousBtn.classList.add("hide");
-         showLoaderList();
-         setTimeout(() => {
-            hideLoaderList();
-            mainList.classList.remove("hide");
-            subList.classList.add("hide");
-            seeMore();
-         }, 1000);
-         renderCard();
-         setValue();
-      }
-   }, 500);
-   input.value = "";
-   console.log(beersArr.length);
+      showLoaderList();
+      mainList.classList.add("hide");
+      subList.classList.add("hide");
+      setTimeout(() => {
+         if (beersArr.length > 8) {
+            firstPage.unshift(beersArr[0], beersArr[1], beersArr[2], beersArr[3], beersArr[4], beersArr[5], beersArr[6], beersArr[7]);
+            localStorage.setItem("page1", JSON.stringify(firstPage));
+            showLoaderList();
+            setTimeout(() => {
+               hideLoaderList();
+               subList.classList.remove("hide");
+               nexBtn.classList.remove("hide");
+               currentPage.classList.remove("hide");
+               seeMore();
+               currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
+               beersData();
+            }, 1000);
+         } else {
+            currentPage.classList.add("hide");
+            nexBtn.classList.add("hide");
+            previousBtn.classList.add("hide");
+            showLoaderList();
+            setTimeout(() => {
+               hideLoaderList();
+               mainList.classList.remove("hide");
+               subList.classList.add("hide");
+               seeMore();
+            }, 1000);
+            renderCard();
+            setValue();
+         }
+      }, 500);
+      input.value = "";
+      console.log(beersArr.length);
+   }
 });
 //---------- See more butt function ----------
 const seeMore = () => {
