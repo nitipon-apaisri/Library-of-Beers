@@ -3,6 +3,7 @@ let count = 0;
 let currentPageNr = 1;
 let perPage = 8;
 const input = document.querySelector(".input-beer-name");
+const validatioin = document.querySelector(".validation");
 const submit = document.querySelector(".name-submit");
 const mainList = document.querySelector("section.list");
 const subList = document.querySelector(".sub-list");
@@ -16,51 +17,57 @@ let beersArr = [];
 window.addEventListener("load", () => {
    localStorage.clear();
 });
-submit.addEventListener("click", async () => {
-   refreshContent();
-   beersArr = [];
-   const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=80";
-   await fetch(results)
-      .then((res) => res.json())
-      .then((beers) => {
-         beers.forEach((beer) => {
-            beersArr.push(beer);
+submit.addEventListener("click", () => {
+   window.location.reload();
+   if (input.value.length == 0) {
+      showValidation();
+   } else {
+      hideValidation();
+      refreshContent();
+      beersArr = [];
+      const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=80";
+      fetch(results)
+         .then((res) => res.json())
+         .then((beers) => {
+            beers.forEach((beer) => {
+               beersArr.push(beer);
+            });
          });
-      });
-   showLoaderList();
-   mainList.classList.add("hide");
-   subList.classList.add("hide");
-   setTimeout(() => {
-      if (beersArr.length > 8) {
-         firstPage.unshift(beersArr[0], beersArr[1], beersArr[2], beersArr[3], beersArr[4], beersArr[5], beersArr[6], beersArr[7]);
-         localStorage.setItem("page1", JSON.stringify(firstPage));
-         showLoaderList();
-         setTimeout(() => {
-            hideLoaderList();
-            subList.classList.remove("hide");
-            nexBtn.classList.remove("hide");
-            currentPage.classList.remove("hide");
-            seeMore();
-            currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
-            beersData();
-         }, 1000);
-      } else {
-         currentPage.classList.add("hide");
-         nexBtn.classList.add("hide");
-         previousBtn.classList.add("hide");
-         showLoaderList();
-         setTimeout(() => {
-            hideLoaderList();
-            mainList.classList.remove("hide");
-            subList.classList.add("hide");
-            seeMore();
-         }, 1000);
-         renderCard();
-         setValue();
-      }
-   }, 500);
-   input.value = "";
-   console.log(beersArr.length);
+      showLoaderList();
+      mainList.classList.add("hide");
+      subList.classList.add("hide");
+      setTimeout(() => {
+         if (beersArr.length > 8) {
+            firstPage.unshift(beersArr[0], beersArr[1], beersArr[2], beersArr[3], beersArr[4], beersArr[5], beersArr[6], beersArr[7]);
+            localStorage.setItem("page1", JSON.stringify(firstPage));
+            showLoaderList();
+            setTimeout(() => {
+               hideLoaderList();
+               subList.classList.remove("hide");
+               nexBtn.classList.remove("hide");
+               currentPage.classList.remove("hide");
+               seeMore();
+               currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
+               beersData();
+            }, 1000);
+         } else {
+            currentPage.classList.add("hide");
+            nexBtn.classList.add("hide");
+            previousBtn.classList.add("hide");
+            showLoaderList();
+            setTimeout(() => {
+               hideLoaderList();
+               mainList.classList.remove("hide");
+               subList.classList.add("hide");
+               subSeeMore();
+            }, 1000);
+            renderCard();
+            setValue();
+         }
+      }, 500);
+      input.value = "";
+      console.log(beersArr.length);
+   }
 });
 //---------- See more butt function ----------
 const seeMore = () => {
@@ -69,6 +76,15 @@ const seeMore = () => {
       butt.addEventListener("click", () => {
          let buttValue = Number(butt.value);
          renderInfo(buttValue);
+      });
+   });
+};
+const subSeeMore = () => {
+   const seeMoreButt = document.querySelectorAll(".sub-see-more");
+   seeMoreButt.forEach((butt) => {
+      butt.addEventListener("click", () => {
+         let buttValue = Number(butt.value);
+         subRenderInfo(buttValue);
       });
    });
 };
@@ -113,6 +129,46 @@ const renderInfo = (buttValue) => {
       foodUserList.appendChild(foodList);
    });
 };
+const subRenderInfo = (buttValue) => {
+   modal.classList.add("active");
+   const nameInModal = document.querySelector(".modal-title");
+   nameInModal.innerHTML = beersArr[buttValue].name;
+   const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
+   if (beersArr[buttValue].image_url == null) {
+      modalImg.classList.add("hide");
+   } else {
+      modalImg.classList.remove("hide");
+      modalImg.src = beersArr[buttValue].image_url;
+   }
+   const modaldescription = document.querySelector(".description");
+   modaldescription.innerHTML = `<b>Description:</b> ${beersArr[buttValue].description}`;
+   const modalAlco = document.querySelector(".alco-volume");
+   modalAlco.innerHTML = `<b>Volume:</b> ${beersArr[buttValue].volume.value} ${beersArr[buttValue].volume.unit}`;
+   const tips = document.querySelector(".tips");
+   tips.innerHTML = `<b>Tips:</b> ${beersArr[buttValue].brewers_tips}`;
+   beersArr[buttValue].ingredients.malt.forEach((beerIngredients) => {
+      const ingredientsList = document.createElement("li");
+      const ingredientsUserList = document.querySelector(".modal-content > ul");
+      const ingredients = beerIngredients.name;
+      ingredientsList.textContent = ingredients;
+      ingredientsUserList.appendChild(ingredientsList);
+   });
+   beersArr[buttValue].ingredients.hops.forEach((beerHops) => {
+      const hopsList = document.createElement("li");
+      const hopsUserList = document.querySelector(".modal-content > .hops");
+      const hops = beerHops.name;
+      hopsList.textContent = hops;
+      hopsUserList.appendChild(hopsList);
+   });
+   beersArr[buttValue].food_pairing.forEach((beerPairing) => {
+      const foodList = document.createElement("li");
+      const foodUserList = document.querySelector(".modal-content > .food-pairing");
+      const food = beerPairing;
+      foodList.textContent = food;
+      foodUserList.appendChild(foodList);
+   });
+};
+
 //---------- Renders card's element when result is less than 8 ----------
 const renderCard = () => {
    const row = document.createElement("div");
@@ -137,7 +193,7 @@ const renderCard = () => {
       cardFooter.setAttribute("class", "card-footer");
       const seeMore = document.createElement("button");
       seeMore.textContent = "See more";
-      seeMore.setAttribute("class", "btn btn-primary see-more");
+      seeMore.setAttribute("class", "btn btn-primary sub-see-more");
       cardFooter.append(seeMore);
       card.append(cardFooter);
       row.append(coverCard);
@@ -147,10 +203,12 @@ const renderCard = () => {
 };
 //---------- Setting value for see more butt ----------
 let setValue = () => {
-   let allButt = document.querySelectorAll(".see-more");
-   allButt.forEach((item, i) => {
-      item.setAttribute("value", i);
-   });
+   let allButt = document.querySelectorAll(".sub-see-more");
+   if (beersArr.length < 8) {
+      allButt.forEach((item, i) => {
+         item.setAttribute("value", i);
+      });
+   }
 };
 //---------- Next fucntion ----------
 let current0 = 0;
