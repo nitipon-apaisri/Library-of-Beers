@@ -1,4 +1,5 @@
 @import "loader06";
+@import "variables";
 @mixin img {
    width: 220px;
    height: 140px;
@@ -34,7 +35,7 @@ h5 {
 body {
    width: 1366px;
    margin: auto;
-   background-color: #eaeef0;
+   background-color: $main-bg-color;
    header {
       nav {
          ul {
@@ -50,6 +51,17 @@ body {
          }
       }
    }
+   @mixin soft-ui {
+      border: none;
+      border-radius: 20px;
+      border-radius: 20px;
+      background: #eaeef0;
+      box-shadow: 38px 38px 76px #dce0e2, -38px -38px 76px #f8fcfe;
+   }
+   @mixin sub-soft-ui {
+      border-radius: 20px;
+      box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+   }
    main {
       article.landing {
          margin-top: 100px;
@@ -58,11 +70,8 @@ body {
                width: 90%;
                margin: 0 auto;
                padding: 20px;
-               border: none;
                height: 400px;
-               border-radius: 20px;
-               background: #eaeef0;
-               box-shadow: 38px 38px 76px #dce0e2, -38px -38px 76px #f8fcfe;
+               @include soft-ui;
                .card-header {
                   padding-left: 20px;
                   padding-right: 20px;
@@ -117,9 +126,8 @@ body {
          margin-top: 50px;
          section.search-input {
             .empty {
-               border-radius: 20px;
-               background: #eaeef0;
-               box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+               background: $main-bg-color;
+               @include sub-soft-ui;
                .empty-icon {
                   i {
                      font-size: 2rem;
@@ -140,9 +148,8 @@ body {
                   .card {
                      padding: 10px;
                      border: none;
-                     border-radius: 20px;
-                     background: #eaeef0;
-                     box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+                     background: $main-bg-color;
+                     @include sub-soft-ui;
                      .card-header {
                         .card-title {
                            h5 {
@@ -180,10 +187,9 @@ body {
       }
       .modal {
          .modal-container {
-            border-radius: 20px;
             padding: 20px;
-            background: #eaeef0;
-            box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+            background: $main-bg-color;
+            @include sub-soft-ui;
             width: 450px;
             .modal-body {
                .modal-content {

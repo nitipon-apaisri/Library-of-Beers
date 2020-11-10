@@ -72,7 +72,12 @@ const renderInfo = (buttValue) => {
    const nameInModal = document.querySelector(".modal-title");
    nameInModal.innerHTML = beersArr[buttValue].name;
    const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
-   modalImg.src = beersArr[buttValue].image_url;
+   if (beersArr[buttValue].image_url == null) {
+      modalImg.classList.add("hide");
+   } else {
+      modalImg.classList.remove("hide");
+      modalImg.src = beersArr[buttValue].image_url;
+   }
    const modaldescription = document.querySelector(".description");
    modaldescription.innerHTML = `<b>Description:</b> ${beersArr[buttValue].description}`;
    const modalAlco = document.querySelector(".alco-volume");
