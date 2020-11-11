@@ -1,10 +1,13 @@
 # Beer Project
 
+![alt text](libraryOfBeerspng)
+
 ## Features
 
 -  Random a beer
 -  Searching beers by name or malt
--  Store data on localhost
+-  Store all the data on localhost
+-  Clear rhe data when page re-freshed
 
 ## Design
 
