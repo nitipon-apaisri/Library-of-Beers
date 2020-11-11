@@ -6,12 +6,12 @@
 -  Searching beers by name or malt
 -  Store data on localhost
 
-# Design
+## Design
 
 -  Minimalist
 -  solf-ui / Neumorphism
 
-# Thank you
+## Thank you
 
 -  [Stack overflow](https://stackoverflow.com/) for everything
 -  [MatejKustec](https://github.com/MatejKustec) for the loader animation
