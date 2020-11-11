@@ -12,7 +12,7 @@
 ## Design
 
 -  Minimalist
--  solf-ui / Neumorphism
+-  soft-ui / Neumorphism
 
 ## Thank you
 
