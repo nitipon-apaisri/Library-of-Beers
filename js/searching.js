@@ -13,7 +13,7 @@ const currentPage = document.querySelector(".current-page");
 let firstPage = [];
 let newValue = 0;
 let beersArr = [];
-
+let clickTime = 1;
 window.addEventListener("load", () => {
    localStorage.clear();
 });
@@ -24,6 +24,7 @@ submit.addEventListener("click", () => {
    } else {
       hideValidation();
       refreshContent();
+      clickTime = 0;
       beersArr = [];
       const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=80";
       fetch(results)
@@ -32,6 +33,7 @@ submit.addEventListener("click", () => {
             beers.forEach((beer) => {
                beersArr.push(beer);
             });
+            console.log(beersArr.length);
          });
       showLoaderList();
       mainList.classList.add("hide");
@@ -90,7 +92,7 @@ const subSeeMore = () => {
 //---------- Renders info when clicked more butt ----------
 const nameInModal = document.querySelector(".modal-title");
 const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
-const modaldescription = document.querySelector(".description");
+const modaldescription = document.querySelector(".modal> .modal-container>.modal-body > .modal-content >.description");
 const modalAlco = document.querySelector(".alco-volume");
 const tips = document.querySelector(".tips");
 const ingredientsList = document.createElement("li");
@@ -211,6 +213,7 @@ let current6 = 6;
 let current7 = 7;
 let localPage = [];
 nexBtn.addEventListener("click", () => {
+   clickTime++;
    previousBtn.classList.remove("hide");
    count += 8;
    currentPageNr += 1;
@@ -257,7 +260,7 @@ nexBtn.addEventListener("click", () => {
       const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
       cardName7.textContent = getLocalData[current7].name;
    }, 1500);
-   if (count === beersArr.length - 8) {
+   if (clickTime + 1 == Math.ceil(beersArr.length / perPage)) {
       nexBtn.classList.add("hide");
    }
    console.log(`card0: ${current0}`);
@@ -265,6 +268,7 @@ nexBtn.addEventListener("click", () => {
 });
 //---------- Prevoius funciton ----------
 previousBtn.addEventListener("click", () => {
+   clickTime--;
    count -= 8;
    currentPageNr -= 1;
    currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
@@ -301,7 +305,8 @@ previousBtn.addEventListener("click", () => {
       const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
       cardName7.textContent = getLocalData[current7].name;
    }, 1500);
-   if (count === 0) {
+   if (clickTime == 0) {
+      nexBtn.classList.remove("hide");
       previousBtn.classList.add("hide");
    }
    console.log(`card0: ${current0}`);
