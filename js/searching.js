@@ -15,6 +15,7 @@ let firstPage = [];
 let newValue = 0;
 let beersArr = [];
 let clickTime = 1;
+const modal = document.querySelector(".modal");
 window.addEventListener("load", () => {
    localStorage.clear();
 });

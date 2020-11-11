@@ -101,3 +101,13 @@ const showValidation = () => {
 const hideValidation = () => {
    validatioin.classList.add("hide");
 };
+
+let change = () => {
+   input.classList.remove("hide");
+   input.removeAttribute("disabled");
+   submit.classList.remove("hide");
+};
+const closeButt = document.querySelector(".modal > .modal-container > .modal-header > .close");
+closeButt.addEventListener("click", () => {
+   modal.classList.remove("active");
+});

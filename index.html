@@ -58,6 +58,8 @@
                      <div class="card-body">
                         <p class="description"></p>
                         <p class="alco-volume"></p>
+                        <h5 class="food-pairing-title"></h5>
+                        <ul class="food-pairing"></ul>
                         <p class="tips"></p>
                      </div>
                   </div>
@@ -69,8 +71,6 @@
                         <ul class="ingredients"></ul>
                         <h5 class="hop-title"></h5>
                         <ul class="hops"></ul>
-                        <h5 class="food-pairing-title"></h5>
-                        <ul class="food-pairing"></ul>
                      </div>
                   </div>
                </section>
@@ -86,14 +86,14 @@
                      </div>
                      <div class="empty-action">
                         <div class="col-4 col-mx-auto search">
-                           <select name="type" class="search-option">
+                           <select name="type" class="search-option" onchange="change()">
                               <option value="null" selected>---</option>
                               <option value="name">name</option>
                               <option value="hops">hops</option>
                            </select>
-                           <input type="text" class="input-beer-name form-input" placeholder="Searching by name" />
+                           <input type="text" class="input-beer-name form-input hide" />
                            <p class="validation hide"></p>
-                           <button class="btn btn-primary name-submit">Search</button>
+                           <button class="btn btn-primary name-submit hide">Search</button>
                         </div>
                      </div>
                   </div>
