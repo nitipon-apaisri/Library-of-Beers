@@ -13,17 +13,18 @@ const currentPage = document.querySelector(".current-page");
 let firstPage = [];
 let newValue = 0;
 let beersArr = [];
-//---------- Searching feature ----------
+let clickTime = 1;
 window.addEventListener("load", () => {
    localStorage.clear();
 });
+//---------- Searching feature ----------
 submit.addEventListener("click", () => {
-   window.location.reload();
    if (input.value.length == 0) {
       showValidation();
    } else {
       hideValidation();
       refreshContent();
+      clickTime = 0;
       beersArr = [];
       const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=80";
       fetch(results)
@@ -66,7 +67,6 @@ submit.addEventListener("click", () => {
          }
       }, 500);
       input.value = "";
-      console.log(beersArr.length);
    }
 });
 //---------- See more butt function ----------
@@ -89,80 +89,71 @@ const subSeeMore = () => {
    });
 };
 //---------- Renders info when clicked more butt ----------
+const nameInModal = document.querySelector(".modal-title");
+const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
+const modaldescription = document.querySelector(".modal> .modal-container>.modal-body > .modal-content >.description");
+const modalAlco = document.querySelector(".alco-volume");
+const tips = document.querySelector(".tips");
+const ingredientsList = document.createElement("li");
+const ingredientsUserList = document.querySelector(".modal-content > ul");
+const hopsList = document.createElement("li");
+const hopsUserList = document.querySelector(".modal-content > .hops");
+const foodList = document.createElement("li");
+const foodUserList = document.querySelector(".modal-content > .food-pairing");
+//---------- Get data from local storage ----------
 const renderInfo = (buttValue) => {
    let getLocalData = JSON.parse(localStorage.getItem("page" + currentPageNr));
    modal.classList.add("active");
-   const nameInModal = document.querySelector(".modal-title");
    nameInModal.innerHTML = getLocalData[buttValue].name;
-   const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
    if (getLocalData[buttValue].image_url == null) {
       modalImg.classList.add("hide");
    } else {
       modalImg.classList.remove("hide");
       modalImg.src = getLocalData[buttValue].image_url;
    }
-   const modaldescription = document.querySelector(".description");
    modaldescription.innerHTML = `<b>Description:</b> ${getLocalData[buttValue].description}`;
-   const modalAlco = document.querySelector(".alco-volume");
    modalAlco.innerHTML = `<b>Volume:</b> ${getLocalData[buttValue].volume.value} ${getLocalData[buttValue].volume.unit}`;
-   const tips = document.querySelector(".tips");
    tips.innerHTML = `<b>Tips:</b> ${getLocalData[buttValue].brewers_tips}`;
    getLocalData[buttValue].ingredients.malt.forEach((beerIngredients) => {
-      const ingredientsList = document.createElement("li");
-      const ingredientsUserList = document.querySelector(".modal-content > ul");
       const ingredients = beerIngredients.name;
       ingredientsList.textContent = ingredients;
       ingredientsUserList.appendChild(ingredientsList);
    });
    getLocalData[buttValue].ingredients.hops.forEach((beerHops) => {
-      const hopsList = document.createElement("li");
-      const hopsUserList = document.querySelector(".modal-content > .hops");
       const hops = beerHops.name;
       hopsList.textContent = hops;
       hopsUserList.appendChild(hopsList);
    });
    getLocalData[buttValue].food_pairing.forEach((beerPairing) => {
-      const foodList = document.createElement("li");
-      const foodUserList = document.querySelector(".modal-content > .food-pairing");
       const food = beerPairing;
       foodList.textContent = food;
       foodUserList.appendChild(foodList);
    });
 };
+//---------- Get data from array ----------
 const subRenderInfo = (buttValue) => {
    modal.classList.add("active");
-   const nameInModal = document.querySelector(".modal-title");
    nameInModal.innerHTML = beersArr[buttValue].name;
-   const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
    if (beersArr[buttValue].image_url == null) {
       modalImg.classList.add("hide");
    } else {
       modalImg.classList.remove("hide");
       modalImg.src = beersArr[buttValue].image_url;
    }
-   const modaldescription = document.querySelector(".description");
    modaldescription.innerHTML = `<b>Description:</b> ${beersArr[buttValue].description}`;
-   const modalAlco = document.querySelector(".alco-volume");
    modalAlco.innerHTML = `<b>Volume:</b> ${beersArr[buttValue].volume.value} ${beersArr[buttValue].volume.unit}`;
-   const tips = document.querySelector(".tips");
    tips.innerHTML = `<b>Tips:</b> ${beersArr[buttValue].brewers_tips}`;
    beersArr[buttValue].ingredients.malt.forEach((beerIngredients) => {
-      const ingredientsList = document.createElement("li");
-      const ingredientsUserList = document.querySelector(".modal-content > ul");
       const ingredients = beerIngredients.name;
       ingredientsList.textContent = ingredients;
       ingredientsUserList.appendChild(ingredientsList);
    });
    beersArr[buttValue].ingredients.hops.forEach((beerHops) => {
-      const hopsList = document.createElement("li");
-      const hopsUserList = document.querySelector(".modal-content > .hops");
       const hops = beerHops.name;
       hopsList.textContent = hops;
       hopsUserList.appendChild(hopsList);
    });
    beersArr[buttValue].food_pairing.forEach((beerPairing) => {
-      const foodList = document.createElement("li");
-      const foodUserList = document.querySelector(".modal-content > .food-pairing");
       const food = beerPairing;
       foodList.textContent = food;
       foodUserList.appendChild(foodList);
@@ -220,7 +211,16 @@ let current5 = 5;
 let current6 = 6;
 let current7 = 7;
 let localPage = [];
+const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
+const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
+const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
+const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
+const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
+const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
+const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
+const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
 nexBtn.addEventListener("click", () => {
+   clickTime++;
    previousBtn.classList.remove("hide");
    count += 8;
    currentPageNr += 1;
@@ -250,31 +250,22 @@ nexBtn.addEventListener("click", () => {
    setTimeout(() => {
       hideLoaderList();
       subList.classList.remove("hide");
-      const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
       cardName0.textContent = getLocalData[current0].name;
-      const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
       cardName1.textContent = getLocalData[current1].name;
-      const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
       cardName2.textContent = getLocalData[current2].name;
-      const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
       cardName3.textContent = getLocalData[current3].name;
-      const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
       cardName4.textContent = getLocalData[current4].name;
-      const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
       cardName5.textContent = getLocalData[current5].name;
-      const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
       cardName6.textContent = getLocalData[current6].name;
-      const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
       cardName7.textContent = getLocalData[current7].name;
    }, 1500);
-   if (count === beersArr.length - 8) {
+   if (clickTime + 1 == Math.ceil(beersArr.length / perPage)) {
       nexBtn.classList.add("hide");
    }
-   console.log(`card0: ${current0}`);
-   console.log(`"newValue:" ${count}`);
 });
 //---------- Prevoius funciton ----------
 previousBtn.addEventListener("click", () => {
+   clickTime--;
    count -= 8;
    currentPageNr -= 1;
    currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
@@ -294,26 +285,17 @@ previousBtn.addEventListener("click", () => {
    setTimeout(() => {
       hideLoaderList();
       subList.classList.remove("hide");
-      const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
       cardName0.textContent = getLocalData[current0].name;
-      const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
       cardName1.textContent = getLocalData[current1].name;
-      const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
       cardName2.textContent = getLocalData[current2].name;
-      const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
       cardName3.textContent = getLocalData[current3].name;
-      const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
       cardName4.textContent = getLocalData[current4].name;
-      const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
       cardName5.textContent = getLocalData[current5].name;
-      const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
       cardName6.textContent = getLocalData[current6].name;
-      const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
       cardName7.textContent = getLocalData[current7].name;
    }, 1500);
-   if (count === 0) {
+   if (clickTime == 0) {
+      nexBtn.classList.remove("hide");
       previousBtn.classList.add("hide");
    }
-   console.log(`card0: ${current0}`);
-   console.log(`"newValue:" ${count}`);
 });
