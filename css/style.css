@@ -110,6 +110,10 @@ body main article.landing section .card .card-img img {
   height: 180px;
 }
 
+body main article.landing section .card button {
+  border-radius: 4px;
+}
+
 body main article.landing section .random-butt {
   margin-top: 100px;
   display: -webkit-box;
@@ -118,6 +122,10 @@ body main article.landing section .random-butt {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+body main article.landing section .random-butt button {
+  border-radius: 4px;
 }
 
 body main article.landing section.beer-info .card .card-body {
@@ -241,10 +249,14 @@ body main .searching-page section.search-input .empty .empty-action .search {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 body main .searching-page section.search-input .empty .empty-action .search select {
   border: none;
+  height: 36px;
   border-radius: 4px;
   margin-right: 10px;
 }
@@ -262,6 +274,7 @@ body main .searching-page section.search-input .empty .empty-action .search p {
 }
 
 body main .searching-page section.search-input .empty .empty-action .search button {
+  border-radius: 4px;
   margin-left: 10px;
 }
 
@@ -344,6 +357,10 @@ body main .searching-page section.list .columns .cover-card .card .card-header .
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 220px;
+}
+
+body main .searching-page section.list .columns .cover-card .card .card-footer button {
+  border-radius: 4px;
 }
 
 body main .searching-page .pagine-chan {

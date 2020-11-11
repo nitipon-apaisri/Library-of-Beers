@@ -100,11 +100,17 @@ body {
                      height: 180px;
                   }
                }
+               button {
+                  border-radius: 4px;
+               }
             }
             .random-butt {
                margin-top: 100px;
                display: flex;
                justify-content: center;
+               button {
+                  border-radius: 4px;
+               }
             }
          }
          section.beer-info {
@@ -154,8 +160,10 @@ body {
                   display: flex;
                   .search {
                      display: flex;
+                     justify-content: center;
                      select {
                         border: none;
+                        height: 36px;
                         border-radius: 4px;
                         margin-right: 10px;
                      }
@@ -170,6 +178,7 @@ body {
                         text-align: left;
                      }
                      button {
+                        border-radius: 4px;
                         margin-left: 10px;
                      }
                   }
@@ -199,6 +208,11 @@ body {
                               text-overflow: ellipsis;
                               max-width: 220px;
                            }
+                        }
+                     }
+                     .card-footer {
+                        button {
+                           border-radius: 4px;
                         }
                      }
                   }
