@@ -11,7 +11,7 @@
    </head>
    <body>
       <header>
-         <nav class="">
+         <nav>
             <ul>
                <li class="nav-item" class="home"><a class="home">Home</a></li>
                <li class="nav-item" class="search"><a class="search">Search</a></li>
@@ -20,10 +20,12 @@
       </header>
       <main>
          <div class="container">
-            <article class="columns landing">
+            <article class="columns landing hide">
                <section class="column col-3 col-mx-auto">
                   <div class="card card-random">
-                     <div class="loader hide"></div>
+                     <div class="cover-loader">
+                        <div class="loader hide"></div>
+                     </div>
                      <div class="cover-inside">
                         <div class="card-img">
                            <div class="placeholde-img"></div>
@@ -43,7 +45,9 @@
                      <button class="random btn btn-primary">random</button>
                   </div>
                </section>
-               <div class="beer-info-loader loader hide"></div>
+               <div class="cover-loader">
+                  <div class="beer-info-loader loader hide"></div>
+               </div>
                <section class="column col-5 beer-info col-mx-auto hide">
                   <div class="card">
                      <div class="card-header">
@@ -71,16 +75,26 @@
                   </div>
                </section>
             </article>
-            <div class="loader loader-search hide"></div>
-            <article class="columns searching-page hide">
+            <div class="cover-loader">
+               <div class="loader loader-search hide"></div>
+            </div>
+            <article class="columns searching-page">
                <section class="column col-12 search-input">
                   <div class="empty">
                      <div class="empty-icon">
                         <i class="fas fa-beer"></i>
                      </div>
                      <div class="empty-action">
+<<<<<<< HEAD
                         <input type="text" class="input-beer-name col-4 col-mx-auto form-input" placeholder="Searching by name" />
                         <button class="btn btn-primary name-submit">search</button>
+=======
+                        <div class="col-4 col-mx-auto search">
+                           <input type="text" class="input-beer-name form-input" placeholder="Searching by name" />
+                           <p class="validation hide"></p>
+                           <button class="btn btn-primary name-submit">Search</button>
+                        </div>
+>>>>>>> main
                      </div>
                   </div>
                </section>

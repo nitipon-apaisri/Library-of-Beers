@@ -38,11 +38,16 @@ rand.addEventListener("click", async () => {
       hideLoader();
       beerInfoName.classList.remove("hide");
       randCard.classList.remove("hide");
-      const hidePlaceHolderImg = document.querySelector("article.landing > section > .card > .cover-inside > .card-img > .placeholde-img ");
-      hidePlaceHolderImg.classList.add("hide");
+      const placeHolderImg = document.querySelector("article.landing > section > .card > .cover-inside > .card-img > .placeholde-img ");
+      placeHolderImg.classList.add("hide");
       const showImg = document.querySelector("article.landing > section > .card > .cover-inside > .card-img > img");
       showImg.classList.remove("hide");
-      img.src = randBeer[0].image_url;
+      if (randBeer[0].image_url == null) {
+         showImg.classList.add("hide");
+         placeHolderImg.classList.remove("hide");
+      } else {
+         img.src = randBeer[0].image_url;
+      }
       name.innerHTML = randBeer[0].name;
       showCardBody();
       showBeerInfo();
@@ -53,14 +58,11 @@ const beerInfo = document.querySelector(".beer-info");
 const beerIngredients = document.querySelector(".beer-ingredients");
 const more = document.querySelector(".card > .cover-inside >.card-footer > button");
 more.addEventListener("click", () => {
-   showBeerInfoLoader();
-   setTimeout(() => {
-      hideBeerInfoLoader();
-      randomBeerInfo(0);
-      beerInfo.classList.remove("hide");
-      beerIngredients.classList.remove("hide");
-      showCardBody();
-   }, 1500);
+   hideBeerInfoLoader();
+   randomBeerInfo(0);
+   beerInfo.classList.remove("hide");
+   beerIngredients.classList.remove("hide");
+   showCardBody();
 });
 
 const closeButt = document.querySelector(".modal > .modal-container > .modal-header > .close");

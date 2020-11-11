@@ -1,4 +1,5 @@
 @import "loader06";
+@import "variables";
 @mixin img {
    width: 220px;
    height: 140px;
@@ -19,6 +20,20 @@
 ::-webkit-scrollbar-corner {
    background: transparent;
 }
+@mixin soft-ui {
+   border: none;
+   border-radius: 20px;
+   border-radius: 20px;
+   background: #eaeef0;
+   box-shadow: 38px 38px 76px #dce0e2, -38px -38px 76px #f8fcfe;
+}
+@mixin sub-soft-ui {
+   border-radius: 20px;
+   box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+}
+.top-300 {
+   margin: 300px auto 0 auto;
+}
 .hide {
    display: none;
 }
@@ -34,16 +49,24 @@ h5 {
 body {
    width: 1366px;
    margin: auto;
-   background-color: #eaeef0;
+   background-color: $main-bg-color;
    header {
       nav {
          ul {
+            padding: 20px;
             display: flex;
             li {
                list-style: none;
+               margin: 0 10px;
                a {
                   cursor: pointer;
-                  padding: 20px;
+                  padding: 10px;
+                  text-decoration: none;
+               }
+               a:hover {
+                  text-decoration: none;
+               }
+               a:active {
                   text-decoration: none;
                }
             }
@@ -52,17 +75,14 @@ body {
    }
    main {
       article.landing {
-         margin-top: 100px;
          section {
             .card {
+               position: relative;
                width: 90%;
-               margin: 0 auto;
+               margin: 50px auto;
                padding: 20px;
-               border: none;
                height: 400px;
-               border-radius: 20px;
-               background: #eaeef0;
-               box-shadow: 38px 38px 76px #dce0e2, -38px -38px 76px #f8fcfe;
+               @include soft-ui;
                .card-header {
                   padding-left: 20px;
                   padding-right: 20px;
@@ -82,7 +102,7 @@ body {
                }
             }
             .random-butt {
-               margin-top: 20px;
+               margin-top: 100px;
                display: flex;
                justify-content: center;
             }
@@ -109,28 +129,52 @@ body {
             }
          }
       }
-      .loader {
-         @include loader06;
-         margin: 50px auto;
+      .cover-loader {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         .loader {
+            @include loader06;
+            margin: 50px auto;
+         }
       }
       .searching-page {
          margin-top: 50px;
          section.search-input {
             .empty {
-               border-radius: 20px;
-               background: #eaeef0;
-               box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+               background: $main-bg-color;
+               @include sub-soft-ui;
                .empty-icon {
                   i {
                      font-size: 2rem;
                   }
                }
                .empty-action {
-                  button {
-                     margin-top: 20px;
+                  display: flex;
+                  .search {
+                     display: flex;
+                     input {
+                        border-radius: 4px;
+                        border: none;
+                     }
+                     p {
+                        margin-top: 10px;
+                        color: #ff7a8a;
+                        font-size: 0.5rem;
+                        text-align: left;
+                     }
+                     button {
+                        margin-left: 10px;
+                     }
                   }
                }
             }
+         }
+         .loader-list {
+            @include loader06;
+            height: 240px;
+            margin: 50px auto;
          }
          section.list {
             margin: 20px 0;
@@ -140,9 +184,8 @@ body {
                   .card {
                      padding: 10px;
                      border: none;
-                     border-radius: 20px;
-                     background: #eaeef0;
-                     box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+                     background: $main-bg-color;
+                     @include sub-soft-ui;
                      .card-header {
                         .card-title {
                            h5 {
@@ -159,7 +202,6 @@ body {
          }
          .pagine-chan {
             width: 100%;
-            margin: auto;
             ul.pagi {
                display: flex;
                justify-content: center;
@@ -180,10 +222,9 @@ body {
       }
       .modal {
          .modal-container {
-            border-radius: 20px;
             padding: 20px;
-            background: #eaeef0;
-            box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
+            background: $main-bg-color;
+            @include sub-soft-ui;
             width: 450px;
             .modal-body {
                .modal-content {
