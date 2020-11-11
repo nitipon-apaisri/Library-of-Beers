@@ -33,7 +33,6 @@ submit.addEventListener("click", () => {
             beers.forEach((beer) => {
                beersArr.push(beer);
             });
-            console.log(beersArr.length);
          });
       showLoaderList();
       mainList.classList.add("hide");
@@ -212,6 +211,14 @@ let current5 = 5;
 let current6 = 6;
 let current7 = 7;
 let localPage = [];
+const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
+const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
+const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
+const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
+const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
+const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
+const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
+const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
 nexBtn.addEventListener("click", () => {
    clickTime++;
    previousBtn.classList.remove("hide");
@@ -243,28 +250,18 @@ nexBtn.addEventListener("click", () => {
    setTimeout(() => {
       hideLoaderList();
       subList.classList.remove("hide");
-      const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
       cardName0.textContent = getLocalData[current0].name;
-      const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
       cardName1.textContent = getLocalData[current1].name;
-      const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
       cardName2.textContent = getLocalData[current2].name;
-      const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
       cardName3.textContent = getLocalData[current3].name;
-      const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
       cardName4.textContent = getLocalData[current4].name;
-      const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
       cardName5.textContent = getLocalData[current5].name;
-      const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
       cardName6.textContent = getLocalData[current6].name;
-      const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
       cardName7.textContent = getLocalData[current7].name;
    }, 1500);
    if (clickTime + 1 == Math.ceil(beersArr.length / perPage)) {
       nexBtn.classList.add("hide");
    }
-   console.log(`card0: ${current0}`);
-   console.log(`"newValue:" ${count}`);
 });
 //---------- Prevoius funciton ----------
 previousBtn.addEventListener("click", () => {
@@ -288,27 +285,17 @@ previousBtn.addEventListener("click", () => {
    setTimeout(() => {
       hideLoaderList();
       subList.classList.remove("hide");
-      const cardName0 = document.querySelector(".card-0 > .card > .card-header > .card-title > h5");
       cardName0.textContent = getLocalData[current0].name;
-      const cardName1 = document.querySelector(".card-1 > .card > .card-header > .card-title > h5");
       cardName1.textContent = getLocalData[current1].name;
-      const cardName2 = document.querySelector(".card-2 > .card > .card-header > .card-title > h5");
       cardName2.textContent = getLocalData[current2].name;
-      const cardName3 = document.querySelector(".card-3 > .card > .card-header > .card-title > h5");
       cardName3.textContent = getLocalData[current3].name;
-      const cardName4 = document.querySelector(".card-4 > .card > .card-header > .card-title > h5");
       cardName4.textContent = getLocalData[current4].name;
-      const cardName5 = document.querySelector(".card-5 > .card > .card-header > .card-title > h5");
       cardName5.textContent = getLocalData[current5].name;
-      const cardName6 = document.querySelector(".card-6 > .card > .card-header > .card-title > h5");
       cardName6.textContent = getLocalData[current6].name;
-      const cardName7 = document.querySelector(".card-7 > .card > .card-header > .card-title > h5");
       cardName7.textContent = getLocalData[current7].name;
    }, 1500);
    if (clickTime == 0) {
       nexBtn.classList.remove("hide");
       previousBtn.classList.add("hide");
    }
-   console.log(`card0: ${current0}`);
-   console.log(`"newValue:" ${count}`);
 });
