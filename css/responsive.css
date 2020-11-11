@@ -1,0 +1,120 @@
+@media screen and (min-width: 1366px) {
+  body {
+    width: 1366px;
+  }
+}
+@media screen and (max-width: 1280px) {
+  body {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .rand-sec {
+    width: 30%;
+  }
+  .rand-sec .card .cover-inside .card-header .card-title h5 {
+    font-size: 0.75rem;
+  }
+  .rand-sec .card .cover-inside .card-footer button {
+    font-size: 0.65rem;
+  }
+
+  .beer-info {
+    width: 35%;
+  }
+  .beer-info .card .card-header .card-title h3 {
+    font-size: 1rem;
+  }
+  .beer-info .card .card-body {
+    font-size: 0.75rem;
+  }
+
+  .beer-ingredients {
+    width: 30%;
+  }
+  .beer-ingredients .card .card-body {
+    font-size: 0.75rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .rand-sec {
+    width: 45%;
+  }
+  .rand-sec .card .cover-inside .card-footer button {
+    margin-bottom: 75px;
+  }
+
+  .beer-info {
+    width: 45%;
+  }
+
+  .beer-ingredients {
+    width: 50%;
+  }
+
+  .search-input .empty .empty-action .search {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 560px) {
+  main .container .landing {
+    display: block;
+  }
+  main .container .landing .rand-sec {
+    width: 60%;
+  }
+  main .container .landing .rand-sec .random-butt {
+    margin-bottom: 100px;
+  }
+  main .container .landing .beer-info {
+    width: 70%;
+  }
+  main .container .landing .beer-ingredients {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 425px) {
+  main .container .landing .rand-sec {
+    width: 80%;
+  }
+  main .container .landing .beer-info {
+    width: 80%;
+  }
+  main .container .landing .beer-ingredients {
+    width: 80%;
+  }
+  main .container .sub-list .columns {
+    display: block;
+  }
+  main .container .sub-list .columns .cover-card {
+    width: 80%;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 375px) {
+  main .container .landing .rand-sec .card .card-header .card-title h5 {
+    font-size: 1rem;
+  }
+  main .container .landing .beer-info {
+    width: 90%;
+  }
+  main .container .landing .beer-ingredients {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 320px) {
+  main .container .landing .rand-sec {
+    width: 95%;
+  }
+  main .container .landing .rand-sec .card .card-header .card-title h5 {
+    font-size: 0.8rem;
+  }
+  main .container .landing .beer-info {
+    width: 95%;
+  }
+  main .container .landing .beer-ingredients {
+    width: 95%;
+  }
+}
+
+/*# sourceMappingURL=responsive.css.map */

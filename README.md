@@ -8,6 +8,7 @@
 -  Searching beers by name or malt
 -  Store all the data on localhost
 -  Clear rhe data when page re-freshed
+-  Full responsive design
 
 ## Design
 
