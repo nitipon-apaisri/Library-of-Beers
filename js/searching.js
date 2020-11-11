@@ -13,12 +13,12 @@ const currentPage = document.querySelector(".current-page");
 let firstPage = [];
 let newValue = 0;
 let beersArr = [];
-//---------- Searching feature ----------
+
 window.addEventListener("load", () => {
    localStorage.clear();
 });
+//---------- Searching feature ----------
 submit.addEventListener("click", () => {
-   window.location.reload();
    if (input.value.length == 0) {
       showValidation();
    } else {
@@ -66,7 +66,6 @@ submit.addEventListener("click", () => {
          }
       }, 500);
       input.value = "";
-      console.log(beersArr.length);
    }
 });
 //---------- See more butt function ----------
@@ -89,80 +88,71 @@ const subSeeMore = () => {
    });
 };
 //---------- Renders info when clicked more butt ----------
+const nameInModal = document.querySelector(".modal-title");
+const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
+const modaldescription = document.querySelector(".description");
+const modalAlco = document.querySelector(".alco-volume");
+const tips = document.querySelector(".tips");
+const ingredientsList = document.createElement("li");
+const ingredientsUserList = document.querySelector(".modal-content > ul");
+const hopsList = document.createElement("li");
+const hopsUserList = document.querySelector(".modal-content > .hops");
+const foodList = document.createElement("li");
+const foodUserList = document.querySelector(".modal-content > .food-pairing");
+//---------- Get data from local storage ----------
 const renderInfo = (buttValue) => {
    let getLocalData = JSON.parse(localStorage.getItem("page" + currentPageNr));
    modal.classList.add("active");
-   const nameInModal = document.querySelector(".modal-title");
    nameInModal.innerHTML = getLocalData[buttValue].name;
-   const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
    if (getLocalData[buttValue].image_url == null) {
       modalImg.classList.add("hide");
    } else {
       modalImg.classList.remove("hide");
       modalImg.src = getLocalData[buttValue].image_url;
    }
-   const modaldescription = document.querySelector(".description");
    modaldescription.innerHTML = `<b>Description:</b> ${getLocalData[buttValue].description}`;
-   const modalAlco = document.querySelector(".alco-volume");
    modalAlco.innerHTML = `<b>Volume:</b> ${getLocalData[buttValue].volume.value} ${getLocalData[buttValue].volume.unit}`;
-   const tips = document.querySelector(".tips");
    tips.innerHTML = `<b>Tips:</b> ${getLocalData[buttValue].brewers_tips}`;
    getLocalData[buttValue].ingredients.malt.forEach((beerIngredients) => {
-      const ingredientsList = document.createElement("li");
-      const ingredientsUserList = document.querySelector(".modal-content > ul");
       const ingredients = beerIngredients.name;
       ingredientsList.textContent = ingredients;
       ingredientsUserList.appendChild(ingredientsList);
    });
    getLocalData[buttValue].ingredients.hops.forEach((beerHops) => {
-      const hopsList = document.createElement("li");
-      const hopsUserList = document.querySelector(".modal-content > .hops");
       const hops = beerHops.name;
       hopsList.textContent = hops;
       hopsUserList.appendChild(hopsList);
    });
    getLocalData[buttValue].food_pairing.forEach((beerPairing) => {
-      const foodList = document.createElement("li");
-      const foodUserList = document.querySelector(".modal-content > .food-pairing");
       const food = beerPairing;
       foodList.textContent = food;
       foodUserList.appendChild(foodList);
    });
 };
+//---------- Get data from array ----------
 const subRenderInfo = (buttValue) => {
    modal.classList.add("active");
-   const nameInModal = document.querySelector(".modal-title");
    nameInModal.innerHTML = beersArr[buttValue].name;
-   const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
    if (beersArr[buttValue].image_url == null) {
       modalImg.classList.add("hide");
    } else {
       modalImg.classList.remove("hide");
       modalImg.src = beersArr[buttValue].image_url;
    }
-   const modaldescription = document.querySelector(".description");
    modaldescription.innerHTML = `<b>Description:</b> ${beersArr[buttValue].description}`;
-   const modalAlco = document.querySelector(".alco-volume");
    modalAlco.innerHTML = `<b>Volume:</b> ${beersArr[buttValue].volume.value} ${beersArr[buttValue].volume.unit}`;
-   const tips = document.querySelector(".tips");
    tips.innerHTML = `<b>Tips:</b> ${beersArr[buttValue].brewers_tips}`;
    beersArr[buttValue].ingredients.malt.forEach((beerIngredients) => {
-      const ingredientsList = document.createElement("li");
-      const ingredientsUserList = document.querySelector(".modal-content > ul");
       const ingredients = beerIngredients.name;
       ingredientsList.textContent = ingredients;
       ingredientsUserList.appendChild(ingredientsList);
    });
    beersArr[buttValue].ingredients.hops.forEach((beerHops) => {
-      const hopsList = document.createElement("li");
-      const hopsUserList = document.querySelector(".modal-content > .hops");
       const hops = beerHops.name;
       hopsList.textContent = hops;
       hopsUserList.appendChild(hopsList);
    });
    beersArr[buttValue].food_pairing.forEach((beerPairing) => {
-      const foodList = document.createElement("li");
-      const foodUserList = document.querySelector(".modal-content > .food-pairing");
       const food = beerPairing;
       foodList.textContent = food;
       foodUserList.appendChild(foodList);
