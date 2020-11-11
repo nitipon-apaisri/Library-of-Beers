@@ -55,7 +55,6 @@ rand.addEventListener("click", async (e) => {
       showBeerInfo();
       randomBeerInfo();
    }, 2000);
-   console.log(randBeer);
 });
 //---------- Show more data function ----------
 const beerInfo = document.querySelector(".beer-info");
