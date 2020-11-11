@@ -10,6 +10,7 @@ const subList = document.querySelector(".sub-list");
 const previousBtn = document.querySelector(".previous");
 const nexBtn = document.querySelector(".next");
 const currentPage = document.querySelector(".current-page");
+const searchOption = document.querySelector(".search-option");
 let firstPage = [];
 let newValue = 0;
 let beersArr = [];
@@ -18,55 +19,76 @@ window.addEventListener("load", () => {
    localStorage.clear();
 });
 //---------- Searching feature ----------
+const fetchName = () => {
+   const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=80";
+   fetch(results)
+      .then((res) => res.json())
+      .then((beers) => {
+         beers.forEach((beer) => {
+            beersArr.push(beer);
+         });
+      });
+};
+const fetchMalt = () => {
+   const results = "https://api.punkapi.com/v2/beers?hops=" + input.value + "&per_page=80";
+   fetch(results)
+      .then((res) => res.json())
+      .then((beers) => {
+         beers.forEach((beer) => {
+            beersArr.push(beer);
+         });
+      });
+};
+const prePare = () => {
+   hideValidation();
+   refreshContent();
+   clickTime = 0;
+   beersArr = [];
+   showLoaderList();
+   mainList.classList.add("hide");
+   subList.classList.add("hide");
+   setTimeout(() => {
+      if (beersArr.length > 8) {
+         firstPage.unshift(beersArr[0], beersArr[1], beersArr[2], beersArr[3], beersArr[4], beersArr[5], beersArr[6], beersArr[7]);
+         localStorage.setItem("page1", JSON.stringify(firstPage));
+         showLoaderList();
+         setTimeout(() => {
+            hideLoaderList();
+            subList.classList.remove("hide");
+            nexBtn.classList.remove("hide");
+            currentPage.classList.remove("hide");
+            seeMore();
+            currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
+            beersData();
+         }, 1000);
+      } else {
+         currentPage.classList.add("hide");
+         nexBtn.classList.add("hide");
+         previousBtn.classList.add("hide");
+         showLoaderList();
+         setTimeout(() => {
+            hideLoaderList();
+            mainList.classList.remove("hide");
+            subList.classList.add("hide");
+            subSeeMore();
+         }, 1000);
+         renderCard();
+         setValue();
+      }
+   }, 500);
+};
 submit.addEventListener("click", () => {
    if (input.value.length == 0) {
       showValidation();
    } else {
-      hideValidation();
-      refreshContent();
-      clickTime = 0;
-      beersArr = [];
-      const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=80";
-      fetch(results)
-         .then((res) => res.json())
-         .then((beers) => {
-            beers.forEach((beer) => {
-               beersArr.push(beer);
-            });
-         });
-      showLoaderList();
-      mainList.classList.add("hide");
-      subList.classList.add("hide");
-      setTimeout(() => {
-         if (beersArr.length > 8) {
-            firstPage.unshift(beersArr[0], beersArr[1], beersArr[2], beersArr[3], beersArr[4], beersArr[5], beersArr[6], beersArr[7]);
-            localStorage.setItem("page1", JSON.stringify(firstPage));
-            showLoaderList();
-            setTimeout(() => {
-               hideLoaderList();
-               subList.classList.remove("hide");
-               nexBtn.classList.remove("hide");
-               currentPage.classList.remove("hide");
-               seeMore();
-               currentPage.textContent = `${currentPageNr} / ${Math.ceil(beersArr.length / perPage)}`;
-               beersData();
-            }, 1000);
-         } else {
-            currentPage.classList.add("hide");
-            nexBtn.classList.add("hide");
-            previousBtn.classList.add("hide");
-            showLoaderList();
-            setTimeout(() => {
-               hideLoaderList();
-               mainList.classList.remove("hide");
-               subList.classList.add("hide");
-               subSeeMore();
-            }, 1000);
-            renderCard();
-            setValue();
-         }
-      }, 500);
-      input.value = "";
+      if (searchOption.value == "name") {
+         fetchName();
+         prePare();
+         input.value = "";
+      } else if (searchOption.value == "hops") {
+         fetchMalt();
+         prePare();
+      }
    }
 });
 //---------- See more butt function ----------
@@ -93,12 +115,9 @@ const nameInModal = document.querySelector(".modal-title");
 const modalImg = document.querySelector(".modal > .modal-container > .modal-body > .modal-content > .card-img > img");
 const modaldescription = document.querySelector(".modal> .modal-container>.modal-body > .modal-content >.description");
 const modalAlco = document.querySelector(".alco-volume");
-const tips = document.querySelector(".tips");
-const ingredientsList = document.createElement("li");
+const tips = document.querySelector(".modal> .modal-container>.modal-body > .modal-content >.tips");
 const ingredientsUserList = document.querySelector(".modal-content > ul");
-const hopsList = document.createElement("li");
 const hopsUserList = document.querySelector(".modal-content > .hops");
-const foodList = document.createElement("li");
 const foodUserList = document.querySelector(".modal-content > .food-pairing");
 //---------- Get data from local storage ----------
 const renderInfo = (buttValue) => {
@@ -116,16 +135,19 @@ const renderInfo = (buttValue) => {
    tips.innerHTML = `<b>Tips:</b> ${getLocalData[buttValue].brewers_tips}`;
    getLocalData[buttValue].ingredients.malt.forEach((beerIngredients) => {
       const ingredients = beerIngredients.name;
+      const ingredientsList = document.createElement("li");
       ingredientsList.textContent = ingredients;
       ingredientsUserList.appendChild(ingredientsList);
    });
    getLocalData[buttValue].ingredients.hops.forEach((beerHops) => {
       const hops = beerHops.name;
+      const hopsList = document.createElement("li");
       hopsList.textContent = hops;
       hopsUserList.appendChild(hopsList);
    });
    getLocalData[buttValue].food_pairing.forEach((beerPairing) => {
       const food = beerPairing;
+      const foodList = document.createElement("li");
       foodList.textContent = food;
       foodUserList.appendChild(foodList);
    });
@@ -145,16 +167,19 @@ const subRenderInfo = (buttValue) => {
    tips.innerHTML = `<b>Tips:</b> ${beersArr[buttValue].brewers_tips}`;
    beersArr[buttValue].ingredients.malt.forEach((beerIngredients) => {
       const ingredients = beerIngredients.name;
+      const ingredientsList = document.createElement("li");
       ingredientsList.textContent = ingredients;
       ingredientsUserList.appendChild(ingredientsList);
    });
    beersArr[buttValue].ingredients.hops.forEach((beerHops) => {
       const hops = beerHops.name;
+      const hopsList = document.createElement("li");
       hopsList.textContent = hops;
       hopsUserList.appendChild(hopsList);
    });
    beersArr[buttValue].food_pairing.forEach((beerPairing) => {
       const food = beerPairing;
+      const foodList = document.createElement("li");
       foodList.textContent = food;
       foodUserList.appendChild(foodList);
    });

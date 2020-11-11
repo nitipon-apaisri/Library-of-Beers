@@ -18,10 +18,13 @@
   background: transparent;
 }
 
+<<<<<<< HEAD
+=======
 .top-300 {
   margin: 300px auto 0 auto;
 }
 
+>>>>>>> main
 .hide {
   display: none;
 }
@@ -44,11 +47,31 @@ body {
   background-color: #eaeef0;
 }
 body header nav ul {
+<<<<<<< HEAD
+=======
   padding: 20px;
+>>>>>>> main
   display: flex;
 }
 body header nav ul li {
   list-style: none;
+<<<<<<< HEAD
+}
+body header nav ul li a {
+  cursor: pointer;
+  padding: 20px;
+  text-decoration: none;
+}
+body main article.landing {
+  margin-top: 100px;
+}
+body main article.landing section .card {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  border: none;
+  height: 400px;
+=======
   margin: 0 10px;
 }
 body header nav ul li a {
@@ -70,6 +93,7 @@ body main article.landing section .card {
   height: 400px;
   border: none;
   border-radius: 20px;
+>>>>>>> main
   border-radius: 20px;
   background: #eaeef0;
   box-shadow: 38px 38px 76px #dce0e2, -38px -38px 76px #f8fcfe;
@@ -93,7 +117,11 @@ body main article.landing section .card .card-img img {
   height: 180px;
 }
 body main article.landing section .random-butt {
+<<<<<<< HEAD
+  margin-top: 20px;
+=======
   margin-top: 100px;
+>>>>>>> main
   display: flex;
   justify-content: center;
 }
@@ -110,6 +138,9 @@ body main article.landing section.beer-ingredients .card .card-body {
   overflow: scroll;
   scrollbar-width: thin;
 }
+<<<<<<< HEAD
+body main .loader {
+=======
 body main .cover-loader {
   position: absolute;
   top: 50%;
@@ -117,6 +148,7 @@ body main .cover-loader {
   transform: translate(-50%, -50%);
 }
 body main .cover-loader .loader {
+>>>>>>> main
   width: 56px;
   height: 56px;
   border: 8px solid transparent;
@@ -124,7 +156,11 @@ body main .cover-loader .loader {
   position: relative;
   margin: 50px auto;
 }
+<<<<<<< HEAD
+body main .loader::before {
+=======
 body main .cover-loader .loader::before {
+>>>>>>> main
   content: "";
   border: 8px solid rgba(0, 82, 236, 0.5);
   border-radius: 50%;
@@ -137,7 +173,11 @@ body main .cover-loader .loader::before {
   animation-delay: 1s;
   opacity: 0;
 }
+<<<<<<< HEAD
+body main .loader::after {
+=======
 body main .cover-loader .loader::after {
+>>>>>>> main
   content: "";
   border: 8px solid #0052ec;
   border-radius: 50%;
@@ -166,13 +206,22 @@ body main .searching-page {
   margin-top: 50px;
 }
 body main .searching-page section.search-input .empty {
+<<<<<<< HEAD
+  border-radius: 20px;
+  background: #eaeef0;
+=======
   background: #eaeef0;
   border-radius: 20px;
+>>>>>>> main
   box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
 }
 body main .searching-page section.search-input .empty .empty-icon i {
   font-size: 2rem;
 }
+<<<<<<< HEAD
+body main .searching-page section.search-input .empty .empty-action button {
+  margin-top: 20px;
+=======
 body main .searching-page section.search-input .empty .empty-action {
   display: flex;
 }
@@ -238,6 +287,7 @@ body main .searching-page .loader-list::after {
     transform: scale(1);
     opacity: 0;
   }
+>>>>>>> main
 }
 body main .searching-page section.list {
   margin: 20px 0;
@@ -248,8 +298,13 @@ body main .searching-page section.list .columns .cover-card {
 body main .searching-page section.list .columns .cover-card .card {
   padding: 10px;
   border: none;
+<<<<<<< HEAD
+  border-radius: 20px;
+  background: #eaeef0;
+=======
   background: #eaeef0;
   border-radius: 20px;
+>>>>>>> main
   box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
 }
 body main .searching-page section.list .columns .cover-card .card .card-header .card-title h5 {
@@ -260,6 +315,10 @@ body main .searching-page section.list .columns .cover-card .card .card-header .
 }
 body main .searching-page .pagine-chan {
   width: 100%;
+<<<<<<< HEAD
+  margin: auto;
+=======
+>>>>>>> main
 }
 body main .searching-page .pagine-chan ul.pagi {
   display: flex;
@@ -278,9 +337,15 @@ body main .searching-page .pagine-chan ul.pagi p {
   padding: 8px;
 }
 body main .modal .modal-container {
+<<<<<<< HEAD
+  border-radius: 20px;
+  padding: 20px;
+  background: #eaeef0;
+=======
   padding: 20px;
   background: #eaeef0;
   border-radius: 20px;
+>>>>>>> main
   box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
   width: 450px;
 }
