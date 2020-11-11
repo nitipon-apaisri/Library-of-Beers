@@ -88,6 +88,7 @@ submit.addEventListener("click", () => {
       } else if (searchOption.value == "hops") {
          fetchMalt();
          prePare();
+         input.value = "";
       }
    }
 });
