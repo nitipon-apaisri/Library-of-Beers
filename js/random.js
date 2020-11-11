@@ -1,5 +1,7 @@
 //---------- Global varaialbes ----------
 let randBeer = [];
+let randBeerMalt = [];
+let randBeerHops = [];
 let randCard = document.querySelector(".cover-inside");
 const cardBody = document.querySelectorAll(".card-body");
 const name = document.querySelector(".card > .cover-inside > .card-header > .card-title > .name");
@@ -14,7 +16,9 @@ const fetchingBeers = async () => {
       .then((res) => res.json())
       .then((beers) => {
          randBeer.push(beers[0]);
+         randBeerMalt.push(beers[0].ingredients.malt);
       });
+   console.log(randBeerMalt);
 };
 const hideCardBody = () => {
    cardBody.forEach((hide) => {
@@ -29,8 +33,9 @@ const showCardBody = () => {
 
 //---------- Random a beer from fetching function ----------
 const rand = document.querySelector(".random");
-rand.addEventListener("click", async (e) => {
+rand.addEventListener("click", async () => {
    randBeer = [];
+   randBeerMalt = [];
    randCard.classList.add("hide");
    beerInfoName.classList.add("hide");
    fetchingBeers();
@@ -68,7 +73,7 @@ more.addEventListener("click", () => {
 });
 //---------- loop beer info ----------
 const randomBeerInfo = () => {
-   randBeer[0].ingredients.malt.forEach((beerIngredients) => {
+   randBeerMalt[0].forEach((beerIngredients) => {
       const ingredientsList = document.createElement("li");
       const ingredients = beerIngredients.name;
       ingredientsList.textContent = ingredients;

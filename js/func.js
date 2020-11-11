@@ -43,6 +43,7 @@ searchButt.addEventListener("click", () => {
 });
 const homeButt = document.querySelector(".home");
 homeButt.addEventListener("click", () => {
+   location.reload();
    hideLanding();
    hideSearching();
    showLoaderSearch();
