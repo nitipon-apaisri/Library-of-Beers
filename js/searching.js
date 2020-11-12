@@ -98,6 +98,18 @@ const seeMore = () => {
    const seeMoreButt = document.querySelectorAll(".see-more");
    seeMoreButt.forEach((butt) => {
       butt.addEventListener("click", () => {
+         let allMaltList = document.querySelectorAll(".modal >  .modal-container > .modal-body> .modal-content > .ingredents > .malt-ls");
+         let hopsList = document.querySelectorAll(".modal >  .modal-container > .modal-body> .modal-content > .hops > .hops-ls");
+         let foodList = document.querySelectorAll(".modal >  .modal-container > .modal-body> .modal-content > .food-pairing > .food-ls");
+         allMaltList.forEach((r) => {
+            r.remove();
+         });
+         hopsList.forEach((r) => {
+            r.remove();
+         });
+         foodList.forEach((r) => {
+            r.remove();
+         });
          let buttValue = Number(butt.value);
          renderInfo(buttValue);
       });
@@ -107,6 +119,18 @@ const subSeeMore = () => {
    const seeMoreButt = document.querySelectorAll(".sub-see-more");
    seeMoreButt.forEach((butt) => {
       butt.addEventListener("click", () => {
+         let allMaltList = document.querySelectorAll(".modal >  .modal-container > .modal-body> .modal-content > .ingredents > .malt-ls");
+         let hopsList = document.querySelectorAll(".modal >  .modal-container > .modal-body> .modal-content > .hops > .hops-ls");
+         let foodList = document.querySelectorAll(".modal >  .modal-container > .modal-body> .modal-content > .food-pairing > .food-ls");
+         allMaltList.forEach((r) => {
+            r.remove();
+         });
+         hopsList.forEach((r) => {
+            r.remove();
+         });
+         foodList.forEach((r) => {
+            r.remove();
+         });
          let buttValue = Number(butt.value);
          subRenderInfo(buttValue);
       });
@@ -138,18 +162,21 @@ const renderInfo = (buttValue) => {
    getLocalData[buttValue].ingredients.malt.forEach((beerIngredients) => {
       const ingredients = beerIngredients.name;
       const ingredientsList = document.createElement("li");
+      ingredientsList.setAttribute("class", "malt-ls");
       ingredientsList.textContent = ingredients;
       ingredientsUserList.appendChild(ingredientsList);
    });
    getLocalData[buttValue].ingredients.hops.forEach((beerHops) => {
       const hops = beerHops.name;
       const hopsList = document.createElement("li");
+      hopsList.setAttribute("class", "hops-ls");
       hopsList.textContent = hops;
       hopsUserList.appendChild(hopsList);
    });
    getLocalData[buttValue].food_pairing.forEach((beerPairing) => {
       const food = beerPairing;
       const foodList = document.createElement("li");
+      foodList.setAttribute("class", "food-ls");
       foodList.textContent = food;
       foodUserList.appendChild(foodList);
    });
@@ -170,18 +197,21 @@ const subRenderInfo = (buttValue) => {
    beersArr[buttValue].ingredients.malt.forEach((beerIngredients) => {
       const ingredients = beerIngredients.name;
       const ingredientsList = document.createElement("li");
+      ingredientsList.setAttribute("class", "malt-ls");
       ingredientsList.textContent = ingredients;
       ingredientsUserList.appendChild(ingredientsList);
    });
    beersArr[buttValue].ingredients.hops.forEach((beerHops) => {
       const hops = beerHops.name;
       const hopsList = document.createElement("li");
+      hopsList.setAttribute("class", "hops-ls");
       hopsList.textContent = hops;
       hopsUserList.appendChild(hopsList);
    });
    beersArr[buttValue].food_pairing.forEach((beerPairing) => {
       const food = beerPairing;
       const foodList = document.createElement("li");
+      foodList.setAttribute("class", "food-ls");
       foodList.textContent = food;
       foodUserList.appendChild(foodList);
    });
