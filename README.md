@@ -1,6 +1,6 @@
 # Beer Project
 
-![alt text](libraryOfBeers.png)
+![alt text](lb.png)
 
 ## Features
 

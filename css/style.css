@@ -175,6 +175,7 @@ body main .searching-page {
 body main .searching-page .all-chips {
   width: 100%;
   padding: 20px;
+  cursor: pointer;
 }
 body main .searching-page .all-chips .chip {
   float: right;
