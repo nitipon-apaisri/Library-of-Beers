@@ -148,7 +148,7 @@ const showBeerInfo = () => {
    const tips = document.querySelector(".beer-info > .card > .card-body > .tips");
    tips.innerHTML = `<b>Tips:</b> ${randBeer[0].brewers_tips}`;
    const ingredientTitle = document.querySelector(".ingredient-title");
-   ingredientTitle.textContent = "Ingredient";
+   ingredientTitle.textContent = "Malt";
    const hopTitle = document.querySelector(".hop-title");
    hopTitle.textContent = "Hops";
    const foodPairingTitle = document.querySelector(".food-pairing-title");
