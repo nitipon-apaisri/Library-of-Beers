@@ -9,6 +9,7 @@
 -  Store all the data on localhost
 -  Clear rhe data when page re-freshed
 -  Full responsive design
+-  Able to see all the beers name, malts name and hops name on searching page
 
 ## Design
 
@@ -27,8 +28,8 @@
 
 ## Members
 
--  Nitipon
--  Mattias
+-  [Nitipon](https://github.com/nitipon-apaisri)
+-  [Mattias](https://github.com/splarsxd)
 
 ## Instruktioner
 

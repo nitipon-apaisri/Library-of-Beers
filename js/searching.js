@@ -2,6 +2,16 @@
 let count = 0;
 let currentPageNr = 1;
 let perPage = 8;
+let firstPage = [];
+let beersArr = [];
+let clickTime = 1;
+let allBeersName = [];
+let allMaltName = [];
+let allHopsName = [];
+let maltName = [];
+let hopsName = [];
+let getTheMaltName = [];
+let getTheHopsName = [];
 const input = document.querySelector(".input-beer-name");
 const validatioin = document.querySelector(".validation");
 const submit = document.querySelector(".name-submit");
@@ -11,13 +21,85 @@ const previousBtn = document.querySelector(".previous");
 const nexBtn = document.querySelector(".next");
 const currentPage = document.querySelector(".current-page");
 const searchOption = document.querySelector(".search-option");
-let firstPage = [];
-let newValue = 0;
-let beersArr = [];
-let clickTime = 1;
-window.addEventListener("load", () => {
+const dataNameBadge = document.querySelector(".searching-page >  .all-chips > .all-beers-name");
+const dataMaltBadge = document.querySelector(".searching-page >  .all-chips > .all-malt-name");
+const dataHopsBadge = document.querySelector(".searching-page >  .all-chips > .all-hops-name");
+const modalNameL = document.querySelector(".name-list");
+const modalMaltL = document.querySelector(".malt-list");
+const modalHopsL = document.querySelector(".hops-list");
+window.addEventListener("load", async () => {
    localStorage.clear();
+   await fetchAllBeerInfo();
+   getMaltName();
+   getHopsName();
+   showBadge();
 });
+//---------- Get all the beers, hops and malts name ----------
+const getMaltName = () => {
+   allMaltName.forEach((v) => {
+      v.forEach((n) => {
+         maltName.push(n.name);
+      });
+   });
+   let uniq = [...new Set(maltName)];
+   getTheMaltName.push(uniq);
+};
+const getHopsName = () => {
+   allHopsName.forEach((v) => {
+      v.forEach((n) => {
+         hopsName.push(n.name);
+      });
+   });
+   let uniq = [...new Set(hopsName)];
+   getTheHopsName.push(uniq);
+};
+const fetchAllBeerInfo = async () => {
+   await fetch("https://api.punkapi.com/v2/beers?page=1&per_page=80")
+      .then((res) => res.json())
+      .then((page1) => {
+         page1.forEach((n) => {
+            allBeersName.push(n.name);
+            allMaltName.push(n.ingredients.malt);
+            allHopsName.push(n.ingredients.hops);
+         });
+      });
+   await fetch("https://api.punkapi.com/v2/beers?page=2&per_page=80")
+      .then((res) => res.json())
+      .then((page1) => {
+         page1.forEach((n) => {
+            allBeersName.push(n.name);
+            allMaltName.push(n.ingredients.malt);
+            allHopsName.push(n.ingredients.hops);
+         });
+      });
+   await fetch("https://api.punkapi.com/v2/beers?page=3&per_page=80")
+      .then((res) => res.json())
+      .then((page1) => {
+         page1.forEach((n) => {
+            allBeersName.push(n.name);
+            allMaltName.push(n.ingredients.malt);
+            allHopsName.push(n.ingredients.hops);
+         });
+      });
+   await fetch("https://api.punkapi.com/v2/beers?page=4&per_page=80")
+      .then((res) => res.json())
+      .then((page1) => {
+         page1.forEach((n) => {
+            allBeersName.push(n.name);
+            allMaltName.push(n.ingredients.malt);
+            allHopsName.push(n.ingredients.hops);
+         });
+      });
+   await fetch("https://api.punkapi.com/v2/beers?page=5&per_page=80")
+      .then((res) => res.json())
+      .then((page1) => {
+         page1.forEach((n) => {
+            allBeersName.push(n.name);
+            allMaltName.push(n.ingredients.malt);
+            allHopsName.push(n.ingredients.hops);
+         });
+      });
+};
 //---------- Searching feature ----------
 const fetchName = () => {
    const results = "https://api.punkapi.com/v2/beers?beer_name=" + input.value + "&per_page=80";
@@ -211,15 +293,15 @@ const subRenderInfo = (buttValue) => {
    modaldescription.innerHTML = `<b>Description:</b> ${beersArr[buttValue].description}`;
    modalAlco.innerHTML = `<b>Volume:</b> ${beersArr[buttValue].volume.value} ${beersArr[buttValue].volume.unit}`;
    tips.innerHTML = `<b>Tips:</b> ${beersArr[buttValue].brewers_tips}`;
-   beersArr[buttValue].malt.malt.forEach((beermalt) => {
-      const malt = beermalt.name;
+   beersArr[buttValue].ingredients.malt.forEach((beerMalt) => {
+      const malt = beerMalt.name;
       const maltList = document.createElement("li");
       maltList.setAttribute("class", "malt-ls");
       const maltVolum = beerMalt.amount.value;
       maltList.textContent = `${maltVolum} kg - ${malt}`;
       maltUserList.appendChild(maltList);
    });
-   beersArr[buttValue].malt.hops.forEach((beerHops) => {
+   beersArr[buttValue].ingredients.hops.forEach((beerHops) => {
       const hops = beerHops.name;
       const hopsList = document.createElement("li");
       hopsList.setAttribute("class", "hops-ls");

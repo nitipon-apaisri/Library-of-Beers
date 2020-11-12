@@ -172,6 +172,18 @@ body main .cover-loader .loader::after {
 body main .searching-page {
   margin-top: 50px;
 }
+body main .searching-page .all-chips {
+  width: 100%;
+  padding: 20px;
+}
+body main .searching-page .all-chips .chip {
+  float: right;
+  background-color: #f9f7f9;
+}
+body main .searching-page .all-chips .chip .demo-imp {
+  width: 20px;
+  height: 20px;
+}
 body main .searching-page section.search-input .empty {
   background: #eaeef0;
   border-radius: 20px;
@@ -304,6 +316,9 @@ body main .modal .modal-container {
   border-radius: 20px;
   box-shadow: 17px 17px 59px #dce0e2, -17px -17px 59px #f8fcfe;
   width: 450px;
+}
+body main .modal .modal-container .modal-body {
+  min-height: 100px;
 }
 body main .modal .modal-container .modal-body .modal-content {
   display: flex;
