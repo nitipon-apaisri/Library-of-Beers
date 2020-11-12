@@ -18,7 +18,6 @@ const fetchingBeers = async () => {
          randBeer.push(beers[0]);
          randBeerMalt.push(beers[0].ingredients.malt);
       });
-   console.log(randBeerMalt);
 };
 const hideCardBody = () => {
    cardBody.forEach((hide) => {
@@ -32,8 +31,49 @@ const showCardBody = () => {
 };
 
 //---------- Random a beer from fetching function ----------
-const rand = document.querySelector(".random");
-rand.addEventListener("click", async () => {
+const rand1 = document.querySelector(".random-1");
+const rand2 = document.querySelector(".random-2");
+rand1.addEventListener("click", async () => {
+   randBeer = [];
+   randBeerMalt = [];
+   randCard.classList.add("hide");
+   beerInfoName.classList.add("hide");
+   fetchingBeers();
+   showLoader();
+   hideCardBody();
+   setTimeout(() => {
+      hideLoader();
+      beerInfoName.classList.remove("hide");
+      randCard.classList.remove("hide");
+      const placeHolderImg = document.querySelector("article.landing > section > .card > .cover-inside > .card-img > .placeholde-img ");
+      placeHolderImg.classList.add("hide");
+      const showImg = document.querySelector("article.landing > section > .card > .cover-inside > .card-img > img");
+      showImg.classList.remove("hide");
+      if (randBeer[0].image_url == null) {
+         showImg.classList.add("hide");
+         placeHolderImg.classList.remove("hide");
+      } else {
+         img.src = randBeer[0].image_url;
+      }
+      name.innerHTML = randBeer[0].name;
+      showCardBody();
+      showBeerInfo();
+      randomBeerInfo();
+   }, 2000);
+});
+rand2.addEventListener("click", async () => {
+   let foodPL = document.querySelectorAll(".food-pairing-l");
+   foodPL.forEach((r) => {
+      r.remove();
+   });
+   let hops = document.querySelectorAll(".hops-l");
+   hops.forEach((r) => {
+      r.remove();
+   });
+   let ingre = document.querySelectorAll(".ingre-l");
+   ingre.forEach((r) => {
+      r.remove();
+   });
    randBeer = [];
    randBeerMalt = [];
    randCard.classList.add("hide");
@@ -67,6 +107,8 @@ const beerIngredients = document.querySelector(".beer-ingredients");
 const more = document.querySelector(".card > .cover-inside >.card-footer > button");
 more.addEventListener("click", () => {
    hideBeerInfoLoader();
+   rand1.classList.add("hide");
+   rand2.classList.remove("hide");
    beerInfo.classList.remove("hide");
    beerIngredients.classList.remove("hide");
    showCardBody();
@@ -75,18 +117,21 @@ more.addEventListener("click", () => {
 const randomBeerInfo = () => {
    randBeerMalt[0].forEach((beerIngredients) => {
       const ingredientsList = document.createElement("li");
+      ingredientsList.setAttribute("class", "ingre-l");
       const ingredients = beerIngredients.name;
       ingredientsList.textContent = ingredients;
       rIngredientsUserList.appendChild(ingredientsList);
    });
    randBeer[0].ingredients.hops.forEach((beerHops) => {
       const hopsList = document.createElement("li");
+      hopsList.setAttribute("class", "hops-l");
       const hops = beerHops.name;
       hopsList.textContent = hops;
       rHopsUserList.appendChild(hopsList);
    });
    randBeer[0].food_pairing.forEach((beerPairing) => {
       const foodList = document.createElement("li");
+      foodList.setAttribute("class", "food-pairing-l");
       const food = beerPairing;
       foodList.textContent = food;
       rFoodUserList.appendChild(foodList);
