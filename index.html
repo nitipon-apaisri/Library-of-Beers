@@ -8,7 +8,7 @@
       <script src="https://kit.fontawesome.com/6be377a2a8.js" crossorigin="anonymous"></script>
       <link rel="stylesheet" href="css/style.css" />
       <link rel="stylesheet" href="css/responsive.css" />
-      <title>Beer</title>
+      <title>Library of Beers</title>
    </head>
    <body>
       <header>
@@ -21,6 +21,7 @@
       </header>
       <main>
          <div class="container">
+            <!-- Landing Page -->
             <article class="columns landing">
                <section class="column col-3 col-mx-auto rand-sec">
                   <div class="card card-random">
@@ -43,8 +44,8 @@
                      </div>
                   </div>
                   <div class="random-butt">
-                     <button class="random-1 btn btn-primary">random</button>
-                     <button class="random-2 btn btn-primary hide">random</button>
+                     <button class="random-1 btn btn-primary">Shuffle</button>
+                     <button class="random-2 btn btn-primary hide">Shuffle</button>
                   </div>
                </section>
                <div class="cover-loader">
@@ -80,6 +81,7 @@
             <div class="cover-loader">
                <div class="loader loader-search hide"></div>
             </div>
+            <!-- Searching page -->
             <article class="columns searching-page hide">
                <section class="column col-12 search-input">
                   <div class="empty">
@@ -92,9 +94,9 @@
                               <option value="null" selected>---</option>
                               <option value="name">name</option>
                               <option value="hops">hops</option>
+                              <option value="malt">malt</option>
                            </select>
                            <input type="text" class="input-beer-name form-input hide" />
-                           <p class="validation hide"></p>
                            <button class="btn btn-primary name-submit hide">Search</button>
                         </div>
                      </div>
@@ -211,7 +213,7 @@
                </div>
             </article>
             <div class="modal">
-               <a href="#close" class="modal-overlay" aria-label="Close"></a>
+               <a href="#close" class="modal-overlay close" aria-label="Close"></a>
                <div class="modal-container">
                   <div class="modal-header">
                      <a href="#close" class="btn btn-clear float-right close" aria-label="Close"></a>
@@ -232,6 +234,18 @@
                         <ul class="food-pairing"></ul>
                         <p class="tips"></p>
                      </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal err">
+               <a href="#close" class="modal-overlay close" aria-label="Close"></a>
+               <div class="modal-container">
+                  <div class="modal-header">
+                     <a href="#close" class="btn btn-clear float-right close" aria-label="Close"></a>
+                     <h5 class="">Error</h5>
+                  </div>
+                  <div class="modal-body">
+                     <p class="validation hide"></p>
                   </div>
                </div>
             </div>

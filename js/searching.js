@@ -15,7 +15,6 @@ let firstPage = [];
 let newValue = 0;
 let beersArr = [];
 let clickTime = 1;
-const modal = document.querySelector(".modal");
 window.addEventListener("load", () => {
    localStorage.clear();
 });
@@ -30,7 +29,7 @@ const fetchName = () => {
          });
       });
 };
-const fetchMalt = () => {
+const fetchHops = () => {
    const results = "https://api.punkapi.com/v2/beers?hops=" + input.value + "&per_page=80";
    fetch(results)
       .then((res) => res.json())
@@ -40,8 +39,17 @@ const fetchMalt = () => {
          });
       });
 };
+const fetchMalt = () => {
+   const results = "https://api.punkapi.com/v2/beers?malt=" + input.value + "&per_page=80";
+   fetch(results)
+      .then((res) => res.json())
+      .then((beers) => {
+         beers.forEach((beer) => {
+            beersArr.push(beer);
+         });
+      });
+};
 const prePare = () => {
-   hideValidation();
    refreshContent();
    clickTime = 0;
    beersArr = [];
@@ -78,18 +86,25 @@ const prePare = () => {
       }
    }, 500);
 };
+//---------- Display input error ----------
+let errDisplay = document.querySelector(".err");
 submit.addEventListener("click", () => {
    if (input.value.length == 0) {
       showValidation();
+      errDisplay.classList.add("active");
    } else {
       if (searchOption.value == "name") {
          fetchName();
          prePare();
-         input.value = "";
+         clearInput();
       } else if (searchOption.value == "hops") {
+         fetchHops();
+         prePare();
+         clearInput();
+      } else if (searchOption.value == "malt") {
          fetchMalt();
          prePare();
-         input.value = "";
+         clearInput();
       }
    }
 });
@@ -142,7 +157,7 @@ const modalImg = document.querySelector(".modal > .modal-container > .modal-body
 const modaldescription = document.querySelector(".modal> .modal-container>.modal-body > .modal-content >.description");
 const modalAlco = document.querySelector(".alco-volume");
 const tips = document.querySelector(".modal> .modal-container>.modal-body > .modal-content >.tips");
-const ingredientsUserList = document.querySelector(".modal-content > ul");
+const maltUserList = document.querySelector(".modal-content > ul");
 const hopsUserList = document.querySelector(".modal-content > .hops");
 const foodUserList = document.querySelector(".modal-content > .food-pairing");
 //---------- Get data from local storage ----------
@@ -159,18 +174,20 @@ const renderInfo = (buttValue) => {
    modaldescription.innerHTML = `<b>Description:</b> ${getLocalData[buttValue].description}`;
    modalAlco.innerHTML = `<b>Volume:</b> ${getLocalData[buttValue].volume.value} ${getLocalData[buttValue].volume.unit}`;
    tips.innerHTML = `<b>Tips:</b> ${getLocalData[buttValue].brewers_tips}`;
-   getLocalData[buttValue].ingredients.malt.forEach((beerIngredients) => {
-      const ingredients = beerIngredients.name;
-      const ingredientsList = document.createElement("li");
-      ingredientsList.setAttribute("class", "malt-ls");
-      ingredientsList.textContent = ingredients;
-      ingredientsUserList.appendChild(ingredientsList);
+   getLocalData[buttValue].ingredients.malt.forEach((beerMalt) => {
+      const malt = beerMalt.name;
+      const maltList = document.createElement("li");
+      maltList.setAttribute("class", "malt-ls");
+      const maltVolum = beerMalt.amount.value;
+      maltList.textContent = `${maltVolum} kg - ${malt}`;
+      maltUserList.appendChild(maltList);
    });
    getLocalData[buttValue].ingredients.hops.forEach((beerHops) => {
       const hops = beerHops.name;
       const hopsList = document.createElement("li");
       hopsList.setAttribute("class", "hops-ls");
-      hopsList.textContent = hops;
+      const hopsVolum = beerHops.amount.value;
+      hopsList.textContent = `${hopsVolum} g - ${hops}`;
       hopsUserList.appendChild(hopsList);
    });
    getLocalData[buttValue].food_pairing.forEach((beerPairing) => {
@@ -194,18 +211,20 @@ const subRenderInfo = (buttValue) => {
    modaldescription.innerHTML = `<b>Description:</b> ${beersArr[buttValue].description}`;
    modalAlco.innerHTML = `<b>Volume:</b> ${beersArr[buttValue].volume.value} ${beersArr[buttValue].volume.unit}`;
    tips.innerHTML = `<b>Tips:</b> ${beersArr[buttValue].brewers_tips}`;
-   beersArr[buttValue].ingredients.malt.forEach((beerIngredients) => {
-      const ingredients = beerIngredients.name;
-      const ingredientsList = document.createElement("li");
-      ingredientsList.setAttribute("class", "malt-ls");
-      ingredientsList.textContent = ingredients;
-      ingredientsUserList.appendChild(ingredientsList);
+   beersArr[buttValue].malt.malt.forEach((beermalt) => {
+      const malt = beermalt.name;
+      const maltList = document.createElement("li");
+      maltList.setAttribute("class", "malt-ls");
+      const maltVolum = beerMalt.amount.value;
+      maltList.textContent = `${maltVolum} kg - ${malt}`;
+      maltUserList.appendChild(maltList);
    });
-   beersArr[buttValue].ingredients.hops.forEach((beerHops) => {
+   beersArr[buttValue].malt.hops.forEach((beerHops) => {
       const hops = beerHops.name;
       const hopsList = document.createElement("li");
       hopsList.setAttribute("class", "hops-ls");
-      hopsList.textContent = hops;
+      const hopsVolum = beerHops.amount.value;
+      hopsList.textContent = `${hopsVolum} g - ${hops}`;
       hopsUserList.appendChild(hopsList);
    });
    beersArr[buttValue].food_pairing.forEach((beerPairing) => {

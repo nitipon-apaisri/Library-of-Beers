@@ -46,6 +46,7 @@ ul {
 h5 {
    margin-bottom: 0;
 }
+
 body {
    width: 1366px;
    margin: auto;
@@ -92,6 +93,7 @@ body {
                   .placeholde-img {
                      background-color: #101010;
                      @include img;
+                     border-radius: 4px;
                   }
                   display: flex;
                   justify-content: center;
@@ -100,11 +102,19 @@ body {
                      height: 180px;
                   }
                }
+               .card-footer {
+                  button {
+                     border-radius: 4px;
+                  }
+               }
             }
             .random-butt {
                margin-top: 100px;
                display: flex;
                justify-content: center;
+               button {
+                  border-radius: 4px;
+               }
             }
          }
          section.beer-info {
@@ -154,6 +164,7 @@ body {
                   display: flex;
                   .search {
                      display: flex;
+                     justify-content: center;
                      select {
                         border: none;
                         height: 36px;
@@ -171,6 +182,7 @@ body {
                         text-align: left;
                      }
                      button {
+                        border-radius: 4px;
                         margin-left: 10px;
                      }
                   }
@@ -200,6 +212,24 @@ body {
                               text-overflow: ellipsis;
                               max-width: 220px;
                            }
+                        }
+                     }
+                     .card-footer {
+                        button {
+                           border-radius: 4px;
+                        }
+                     }
+                  }
+               }
+            }
+         }
+         section.sub-list {
+            .columns {
+               .cover-card {
+                  .card {
+                     .card-footer {
+                        button {
+                           border-radius: 4px;
                         }
                      }
                   }
@@ -237,7 +267,7 @@ body {
                   display: flex;
                   flex-direction: column;
                   .card-img {
-                     margin: auto;
+                     margin: 50px auto;
                      img {
                         width: 180px;
                         height: 240px;

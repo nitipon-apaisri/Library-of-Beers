@@ -87,15 +87,22 @@ body main article.landing section .card .card-img .placeholde-img {
   background-color: #101010;
   width: 220px;
   height: 140px;
+  border-radius: 4px;
 }
 body main article.landing section .card .card-img img {
   width: 150px;
   height: 180px;
 }
+body main article.landing section .card .card-footer button {
+  border-radius: 4px;
+}
 body main article.landing section .random-butt {
   margin-top: 100px;
   display: flex;
   justify-content: center;
+}
+body main article.landing section .random-butt button {
+  border-radius: 4px;
 }
 body main article.landing section.beer-info .card .card-body {
   scroll-behavior: smooth;
@@ -178,6 +185,7 @@ body main .searching-page section.search-input .empty .empty-action {
 }
 body main .searching-page section.search-input .empty .empty-action .search {
   display: flex;
+  justify-content: center;
 }
 body main .searching-page section.search-input .empty .empty-action .search select {
   border: none;
@@ -196,6 +204,7 @@ body main .searching-page section.search-input .empty .empty-action .search p {
   text-align: left;
 }
 body main .searching-page section.search-input .empty .empty-action .search button {
+  border-radius: 4px;
   margin-left: 10px;
 }
 body main .searching-page .loader-list {
@@ -264,6 +273,12 @@ body main .searching-page section.list .columns .cover-card .card .card-header .
   text-overflow: ellipsis;
   max-width: 220px;
 }
+body main .searching-page section.list .columns .cover-card .card .card-footer button {
+  border-radius: 4px;
+}
+body main .searching-page section.sub-list .columns .cover-card .card .card-footer button {
+  border-radius: 4px;
+}
 body main .searching-page .pagine-chan {
   width: 100%;
 }
@@ -295,7 +310,7 @@ body main .modal .modal-container .modal-body .modal-content {
   flex-direction: column;
 }
 body main .modal .modal-container .modal-body .modal-content .card-img {
-  margin: auto;
+  margin: 50px auto;
 }
 body main .modal .modal-container .modal-body .modal-content .card-img img {
   width: 180px;

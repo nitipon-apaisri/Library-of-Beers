@@ -1,22 +1,19 @@
 //---------- Global varaialbes ----------
-let randBeer = [];
-let randBeerMalt = [];
-let randBeerHops = [];
-let randCard = document.querySelector(".cover-inside");
+const randCard = document.querySelector(".cover-inside");
 const cardBody = document.querySelectorAll(".card-body");
 const name = document.querySelector(".card > .cover-inside > .card-header > .card-title > .name");
 const img = document.querySelector(".card > .cover-inside > .card-img > img ");
 const beerInfoName = document.querySelector(".beer-info > .card > .card-header > .card-title > h3");
 const rFoodUserList = document.querySelector(" .beer-info > .card > .card-body > .food-pairing");
 const rHopsUserList = document.querySelector(".beer-ingredients > .card > .card-body > .hops");
-const rIngredientsUserList = document.querySelector(".beer-ingredients > .card > .card-body > .ingredients");
+const rMaltUserList = document.querySelector(".beer-ingredients > .card > .card-body > .ingredients");
+let randBeer = [];
 //---------- Fetching beer by random ----------
 const fetchingBeers = async () => {
    await fetch("https://api.punkapi.com/v2/beers/random")
       .then((res) => res.json())
       .then((beers) => {
          randBeer.push(beers[0]);
-         randBeerMalt.push(beers[0].ingredients.malt);
       });
 };
 const hideCardBody = () => {
@@ -115,18 +112,20 @@ more.addEventListener("click", () => {
 });
 //---------- loop beer info ----------
 const randomBeerInfo = () => {
-   randBeerMalt[0].forEach((beerIngredients) => {
-      const ingredientsList = document.createElement("li");
-      ingredientsList.setAttribute("class", "ingre-l");
-      const ingredients = beerIngredients.name;
-      ingredientsList.textContent = ingredients;
-      rIngredientsUserList.appendChild(ingredientsList);
+   randBeer[0].ingredients.malt.forEach((beerMalt) => {
+      const maltList = document.createElement("li");
+      maltList.setAttribute("class", "ingre-l");
+      const malt = beerMalt.name;
+      const maltVolum = beerMalt.amount.value;
+      maltList.textContent = `${maltVolum} kg - ${malt}`;
+      rMaltUserList.appendChild(maltList);
    });
    randBeer[0].ingredients.hops.forEach((beerHops) => {
       const hopsList = document.createElement("li");
       hopsList.setAttribute("class", "hops-l");
       const hops = beerHops.name;
-      hopsList.textContent = hops;
+      const hopsVolum = beerHops.amount.value;
+      hopsList.textContent = `${hopsVolum} g - ${hops}`;
       rHopsUserList.appendChild(hopsList);
    });
    randBeer[0].food_pairing.forEach((beerPairing) => {
