@@ -151,7 +151,26 @@ body {
       }
       .searching-page {
          margin-top: 50px;
+         .all-chips {
+            width: 100%;
+            padding: 20px;
+            .chip {
+               float: right;
+               background-color: #f9f7f9;
+               .demo-imp {
+                  width: 20px;
+                  height: 20px;
+               }
+            }
+         }
          section.search-input {
+            // .badge::after {
+            //    font-size: 0.9rem;
+            //    width: 2rem;
+            //    height: 2rem;
+            //    line-height: 2;
+            //    border-radius: 100%;
+            // }
             .empty {
                background: $main-bg-color;
                @include sub-soft-ui;
@@ -263,6 +282,7 @@ body {
             @include sub-soft-ui;
             width: 450px;
             .modal-body {
+               min-height: 100px;
                .modal-content {
                   display: flex;
                   flex-direction: column;

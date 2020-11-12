@@ -91,6 +91,27 @@ const showBeerInfoLoader = () => {
 const hideBeerInfoLoader = () => {
    beerInfoLoader.classList.add("hide");
 };
+const loaderAllName = document.querySelector(".name-list > .modal-container > .modal-body > .cover-loader > .loader-all-name");
+const showLoaderAllName = () => {
+   loaderAllName.classList.remove("hide");
+};
+const hideLoaderAllName = () => {
+   loaderAllName.classList.add("hide");
+};
+const loaderAllMalt = document.querySelector(".malt-list > .modal-container > .modal-body > .cover-loader > .loader-all-malt");
+const showLoaderAllMalt = () => {
+   loaderAllMalt.classList.remove("hide");
+};
+const hideLoaderAllMalt = () => {
+   loaderAllMalt.classList.add("hide");
+};
+const loaderAllHops = document.querySelector(".hops-list > .modal-container > .modal-body > .cover-loader > .loader-all-hops");
+const showLoaderAllHops = () => {
+   loaderAllHops.classList.remove("hide");
+};
+const hideLoaderAllHops = () => {
+   loaderAllHops.classList.add("hide");
+};
 //---------- Show validation ----------
 const showValidation = () => {
    validatioin.classList.remove("hide");
@@ -104,21 +125,91 @@ let change = () => {
 //---------- Hide/show Modal ----------
 const modal = document.querySelector(".modal");
 const modalErr = document.querySelector(".err");
+const modalNameList = document.querySelector(".name-list");
+const modalMaltList = document.querySelector(".malt-list");
+const modalHopsList = document.querySelector(".hops-list");
 const closeButtOutSide = document.querySelectorAll(".modal > .close");
 const closeButtX = document.querySelectorAll(".modal > .modal-container > .modal-header > .close");
 closeButtX.forEach((c) => {
    c.addEventListener("click", () => {
       modal.classList.remove("active");
       modalErr.classList.remove("active");
+      modalNameList.classList.remove("active");
+      modalMaltList.classList.remove("active");
+      modalHopsList.classList.remove("active");
    });
 });
 closeButtOutSide.forEach((c) => {
    c.addEventListener("click", () => {
       modal.classList.remove("active");
       modalErr.classList.remove("active");
+      modalNameList.classList.remove("active");
+      modalMaltList.classList.remove("active");
+      modalHopsList.classList.remove("active");
    });
 });
 //---------- Clear input ----------
 const clearInput = () => {
    input.value = "";
+};
+//---------- Badge ----------
+const showBadge = () => {
+   if (allBeersName.length <= 0 && getTheMaltName.length <= 0 && getTheHopsName.length <= 0) {
+      dataNameBadge.classList.add("hide");
+      dataMaltBadge.classList.add("hide");
+      dataHopsBadge.classList.add("hide");
+   } else {
+      dataNameBadge.addEventListener("click", () => {
+         const nameUl = document.querySelector(".name-list > .modal-container > .modal-body > ul");
+         modalNameL.classList.add("active");
+         nameUl.classList.add("hide");
+         allBeersName.forEach((l) => {
+            const allBeersList = document.createElement("li");
+            let name = l;
+            allBeersList.textContent = name;
+            showLoaderAllName();
+            setTimeout(() => {
+               nameUl.classList.remove("hide");
+               hideLoaderAllName();
+               nameUl.appendChild(allBeersList);
+            }, 1500);
+         });
+      });
+      dataMaltBadge.addEventListener("click", () => {
+         const nameUl = document.querySelector(".malt-list > .modal-container > .modal-body > ul");
+         modalMaltL.classList.add("active");
+         nameUl.classList.add("hide");
+         getTheMaltName.forEach((l) => {
+            l.forEach((s) => {
+               const allMaltList = document.createElement("li");
+               let name = s;
+               allMaltList.textContent = name;
+               showLoaderAllMalt();
+               setTimeout(() => {
+                  nameUl.classList.remove("hide");
+                  hideLoaderAllMalt();
+                  nameUl.appendChild(allMaltList);
+               }, 1500);
+            });
+         });
+      });
+      dataHopsBadge.addEventListener("click", () => {
+         const nameUl = document.querySelector(".hops-list > .modal-container > .modal-body > ul");
+         modalHopsL.classList.add("active");
+         nameUl.classList.add("hide");
+         getTheHopsName.forEach((l) => {
+            l.forEach((s) => {
+               const allHopsList = document.createElement("li");
+               let name = s;
+               allHopsList.textContent = name;
+               showLoaderAllHops();
+               setTimeout(() => {
+                  nameUl.classList.remove("hide");
+                  hideLoaderAllHops();
+                  nameUl.appendChild(allHopsList);
+               }, 1500);
+            });
+         });
+      });
+   }
 };
