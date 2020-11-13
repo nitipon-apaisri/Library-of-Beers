@@ -57,6 +57,7 @@ rand1.addEventListener("click", async () => {
       showBeerInfo();
       randomBeerInfo();
    }, 2000);
+   more.classList.remove("hide");
 });
 rand2.addEventListener("click", async () => {
    let foodPL = document.querySelectorAll(".food-pairing-l");
