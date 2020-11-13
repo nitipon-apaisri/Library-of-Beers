@@ -1,13 +1,13 @@
 # Beer Project
 
-![alt text](libraryOfBeers.png)
+![alt text](lb.png)
 
 ## Features
 
 -  Random a beer
--  Searching beers by name or malt
+-  Searching beers by name, malt or hops
 -  Store all the data on localhost
--  Clear rhe data when page re-freshed
+-  Clear the data when page re-freshed
 -  Full responsive design
 -  Able to see all the beers name, malts name and hops name on searching page
 

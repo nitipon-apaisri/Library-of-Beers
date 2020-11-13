@@ -154,6 +154,7 @@ body {
          .all-chips {
             width: 100%;
             padding: 20px;
+            cursor: pointer;
             .chip {
                float: right;
                background-color: #f9f7f9;
@@ -164,13 +165,6 @@ body {
             }
          }
          section.search-input {
-            // .badge::after {
-            //    font-size: 0.9rem;
-            //    width: 2rem;
-            //    height: 2rem;
-            //    line-height: 2;
-            //    border-radius: 100%;
-            // }
             .empty {
                background: $main-bg-color;
                @include sub-soft-ui;

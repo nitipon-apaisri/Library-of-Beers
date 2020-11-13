@@ -33,6 +33,7 @@ window.addEventListener("load", async () => {
    getMaltName();
    getHopsName();
    showBadge();
+   console.log(getTheMaltName);
 });
 //---------- Get all the beers, hops and malts name ----------
 const getMaltName = () => {
