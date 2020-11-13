@@ -161,8 +161,10 @@ const showBadge = () => {
    } else {
       dataNameBadge.addEventListener("click", () => {
          const nameUl = document.querySelector(".name-list > .modal-container > .modal-body > ul");
+         const nameHeader = document.querySelector(".name-list > .modal-container > .modal-header > h5");
          modalNameL.classList.add("active");
          nameUl.classList.add("hide");
+         nameHeader.textContent = `Beer: ${allBeersName.length} pieces`;
          allBeersName.forEach((l) => {
             const allBeersList = document.createElement("li");
             let name = l;
@@ -177,8 +179,10 @@ const showBadge = () => {
       });
       dataMaltBadge.addEventListener("click", () => {
          const nameUl = document.querySelector(".malt-list > .modal-container > .modal-body > ul");
+         const maltNr = document.querySelector(".malt-list > .modal-container > .modal-header > h5");
          modalMaltL.classList.add("active");
          nameUl.classList.add("hide");
+         maltNr.textContent = `Malt: ${getTheMaltName[0].length} pieces`;
          getTheMaltName.forEach((l) => {
             l.forEach((s) => {
                const allMaltList = document.createElement("li");
@@ -195,8 +199,10 @@ const showBadge = () => {
       });
       dataHopsBadge.addEventListener("click", () => {
          const nameUl = document.querySelector(".hops-list > .modal-container > .modal-body > ul");
+         const hopsNr = document.querySelector(".hops-list > .modal-container > .modal-header > h5");
          modalHopsL.classList.add("active");
          nameUl.classList.add("hide");
+         hopsNr.textContent = `Hops: ${getTheHopsName[0].length} pieces`;
          getTheHopsName.forEach((l) => {
             l.forEach((s) => {
                const allHopsList = document.createElement("li");
