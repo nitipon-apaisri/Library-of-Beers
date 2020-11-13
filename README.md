@@ -23,6 +23,7 @@
 -  [adamgiebl.io](https://www.instagram.com/adamgiebl.io/) for the ui
 -  [Spectre](https://picturepan2.github.io/spectre/index.html) for the css framwork
 -  [PunkAPI](https://punkapi.com/documentation/v2) for the api
+-  [Font Awesome](https://fontawesome.com/) for the icons
 
 > Don't forget: _git add . => git commit -m "msg" => git push_
 
