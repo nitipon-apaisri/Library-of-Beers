@@ -1,3 +1,4 @@
+// Searching //
 //---------- Global varaialbes ----------
 let count = 0;
 let currentPageNr = 1;
